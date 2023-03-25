@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyCoolMan</string>
+    <string name="filekey"> </string>
+    <string name="MACkey">mackey</string>
+    <string name="serviceKey">servicekey</string>
+    <string name="characterKey">characterkey</string>
+</resources>
