@@ -69,31 +69,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="auto" />
+                android:text="Auto" />
 
             <RadioButton
                 android:id="@+id/scale1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scale1" />
+                android:text="Speed1" />
 
             <RadioButton
                 android:id="@+id/scale2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scale2" />
+                android:text="Speed2" />
 
             <RadioButton
                 android:id="@+id/scale3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scale3" />
+                android:text="Speed3" />
 
             <RadioButton
                 android:id="@+id/scale4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="scale4" />
+                android:text="Speed4" />
 
         </RadioGroup>
         <View

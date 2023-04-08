@@ -97,11 +97,11 @@ public class FanActivity extends AppCompatActivity {
                 RadioButton rbChecked = (RadioButton)findViewById(id);
                 String name = rbChecked.getText().toString();
                 switch (name){
-                    case "scale0" :scale = 0; break;
-                    case "scale1" :scale = 1; break;
-                    case "scale2" :scale = 2; break;
-                    case "scale3" :scale = 3; break;
-                    case "scale4" :scale = 4; break;
+                    case "Speed0" :scale = 0; break;
+                    case "Speed1" :scale = 1; break;
+                    case "Speed2" :scale = 2; break;
+                    case "Speed3" :scale = 3; break;
+                    case "Speed4" :scale = 4; break;
                     default:scale = 0 ;break;
                 }
 
