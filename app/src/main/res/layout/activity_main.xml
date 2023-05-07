@@ -382,16 +382,18 @@
                 android:src="@drawable/btmode"
                 android:scaleType="fitCenter"
                 android:contentDescription="change mode"/>
+
             <ImageButton
                 android:id="@+id/btTimer"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:background="#23221F"
-                android:src="@drawable/bttimer"
+                android:contentDescription="set timer"
                 android:scaleType="fitCenter"
-                android:contentDescription="set timer"/>
+                android:src="@drawable/bttimer" />
+
             <ImageButton
                 android:id="@+id/btMinus"
                 android:layout_width="0dp"

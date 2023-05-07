@@ -10,17 +10,19 @@
         android:background="#168AD6"
         android:orientation="horizontal"
         android:layout_weight="50">
+
         <ImageButton
             android:id="@+id/btReturn"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:src="@drawable/back"
-            android:background="#168AD6"
-            android:scaleType= "fitEnd"
-            android:layout_marginTop="30dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
-            android:layout_height="match_parent"/>
+            android:layout_weight="1"
+            android:background="#168AD6"
+            android:scaleType="fitEnd"
+            android:src="@drawable/back"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         <ImageView
             android:id="@+id/imageTitle"
             android:layout_width="0dp"
@@ -31,16 +33,18 @@
             android:layout_marginRight="40dp"
             android:layout_marginBottom="10dp"
             android:layout_height="match_parent"/>
+
         <ImageButton
             android:id="@+id/btSetting"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:background="#168AD6"
             android:scaleType="fitCenter"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="match_parent"/>
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/detail"
@@ -114,16 +118,18 @@
                 android:textSize="18dp"
                 android:textColor="@color/black"
                 android:text="Manual" />
+
             <ImageButton
                 android:id="@+id/btCheckFan"
                 android:layout_width="0dp"
-                android:layout_height="24dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:layout_weight="6"
                 android:background="#9EDAE1"
                 android:scaleType="fitCenter"
-                android:src="@drawable/detail"  />
+                android:src="@drawable/detail"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </LinearLayout>
         <LinearLayout
@@ -156,13 +162,14 @@
             <ImageButton
                 android:id="@+id/changelight"
                 android:layout_width="0dp"
-                android:layout_height="24dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
                 android:layout_weight="2"
                 android:background="#9EDAE1"
                 android:scaleType="fitCenter"
-                android:src="@drawable/detail" />
+                android:src="@drawable/detail"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -195,16 +202,51 @@
                 android:textColor="@color/black"
                 android:gravity="center_vertical" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#9EDAE1"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_marginLeft="20dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:gravity="center_vertical"
+                android:text="Timer" />
+
+            <ImageButton
+                android:id="@+id/setTimer"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:layout_weight="2"
+                android:background="#9EDAE1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/detail"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/reset"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="#168AD6"
             android:text="Reset to Factory Settings"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"/>
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <View

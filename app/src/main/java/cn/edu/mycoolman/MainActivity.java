@@ -400,32 +400,32 @@ public class MainActivity extends AppCompatActivity {
     }
     //设置风量
     private  void setWind(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        fanSelected = true;
-        lightSelected = false;
-        uintSelected = false;
-        modeSelected = false;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        fanSelected = true;
+//        lightSelected = false;
+//        uintSelected = false;
+//        modeSelected = false;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
         if (mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x12;
-            bytes[2] = (byte)((dataRead.getWind()+1)%5) ;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
+            bytes[2] = (byte) ((dataRead.getWind() + 1) % 5);
+            byte[] bytein = {bytes[1], bytes[2]};
+            int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
+            bytes[3] = (byte) (0xFF & (x >> 8));
             bytes[5] = 0x55;
 
             mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
@@ -446,66 +446,66 @@ public class MainActivity extends AppCompatActivity {
         btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
        //所有按钮都不打开，或者设置温度按钮打开，设置温度
         byte[] bytes = new byte[6];
-        if((!(fanSelected||lightSelected||modeSelected||timerSelected||quitSelected||turboSelected)||uintSelected)){
-           // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x11;
-            bytes[2] = (byte)(dataRead.getTempSetting() +1);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if((!(fanSelected||lightSelected||modeSelected||timerSelected||quitSelected||turboSelected)||uintSelected)){
+        // byte[] bytes = new byte[6];
+        bytes[0] = (byte) 0xAA;
+        bytes[1] = 0x11;
+        bytes[2] = (byte) (dataRead.getTempSetting() + 1);
+        byte[] bytein = {bytes[1], bytes[2]};
+        int x = utilCRC.alex_crc16(bytein, 2);
+        bytes[4] = (byte) (0xFF & x);
+        bytes[3] = (byte) (0xFF & (x >> 8));
+        bytes[5] = 0x55;
+//        }
         //模式选择按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&modeSelected){
-           // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x13;
-            bytes[2] = (byte)((dataRead.getMode() +3)%5);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&modeSelected){
+//           // byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x13;
+//            bytes[2] = (byte)((dataRead.getMode() +3)%5);
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
         //风量按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&fanSelected){
-           // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x12;
-            bytes[2] = (byte)((dataRead.getWind() +1)%5);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&fanSelected){
+//           // byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x12;
+//            bytes[2] = (byte)((dataRead.getWind() +1)%5);
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
         //定时按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&timerSelected){
-           // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x16;
-            bytes[2] = (byte)(dataRead.getCountdown() +5);
-            if(bytes[2]<0) bytes[2]+=128;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&timerSelected){
+//           // byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x16;
+//            bytes[2] = (byte)(dataRead.getCountdown() +5);
+//            if(bytes[2]<0) bytes[2]+=128;
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
         //logo灯按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&lightSelected){
-            //byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x1D;
-            bytes[2] =(byte)(dataRead.getBrightness()+1);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&lightSelected){
+//            //byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x1D;
+//            bytes[2] =(byte)(dataRead.getBrightness()+1);
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
         mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
             @Override
             public void onResponse(int code) {
@@ -523,68 +523,68 @@ public class MainActivity extends AppCompatActivity {
         btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
         //所有按钮都不打开，或者设置温度按钮打开，设置温度
         byte[] bytes = new byte[6];
-        if(!(fanSelected||lightSelected||modeSelected||timerSelected||quitSelected||turboSelected)||uintSelected){
-            // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x11;
-            bytes[2] = (byte)(dataRead.getTempSetting() -1);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if(!(fanSelected||lightSelected||modeSelected||timerSelected||quitSelected||turboSelected)||uintSelected){
+        // byte[] bytes = new byte[6];
+        bytes[0] = (byte) 0xAA;
+        bytes[1] = 0x11;
+        bytes[2] = (byte) (dataRead.getTempSetting() - 1);
+        byte[] bytein = {bytes[1], bytes[2]};
+        int x = utilCRC.alex_crc16(bytein, 2);
+        bytes[4] = (byte) (0xFF & x);
+        bytes[3] = (byte) (0xFF & (x >> 8));
+        bytes[5] = 0x55;
+//        }
         //模式选择按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&modeSelected){
-            // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x13;
-            bytes[2] = (byte)((dataRead.getMode() +2)%5);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
-        //风量按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&fanSelected){
-            // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x12;
-            bytes[2] = (byte)((dataRead.getWind() +4)%5);
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
-        //定时按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&timerSelected){
-            // byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x16;
-            bytes[2] = (byte)(dataRead.getCountdown() -5);
-            if(bytes[2]<0) bytes[2]+= 128;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
-        //logo灯按钮打开
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&lightSelected){
-            //byte[] bytes = new byte[6];
-            bytes[0] = (byte) 0xAA;
-            bytes[1] = 0x1D;
-            if(dataRead.getBrightness()>0) {
-                bytes[2] = (byte) (dataRead.getBrightness() - 1);
-            }
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
-            bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
-            bytes[5] = 0x55;
-        }
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&modeSelected){
+//            // byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x13;
+//            bytes[2] = (byte)((dataRead.getMode() +2)%5);
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
+//        //风量按钮打开
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&fanSelected){
+//            // byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x12;
+//            bytes[2] = (byte)((dataRead.getWind() +4)%5);
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
+//        //定时按钮打开
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&timerSelected){
+//            // byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x16;
+//            bytes[2] = (byte)(dataRead.getCountdown() -5);
+//            if(bytes[2]<0) bytes[2]+= 128;
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
+//        //logo灯按钮打开
+//        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)&&lightSelected){
+//            //byte[] bytes = new byte[6];
+//            bytes[0] = (byte) 0xAA;
+//            bytes[1] = 0x1D;
+//            if(dataRead.getBrightness()>0) {
+//                bytes[2] = (byte) (dataRead.getBrightness() - 1);
+//            }
+//            byte[]  bytein = {bytes[1],bytes[2]};
+//            int x =  utilCRC.alex_crc16(bytein,2);
+//            bytes[4] = (byte) (0xFF & x);
+//            bytes[3] = (byte) (0xFF&(x>>8));
+//            bytes[5] = 0x55;
+//        }
         mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
             @Override
             public void onResponse(int code) {
@@ -606,28 +606,28 @@ public class MainActivity extends AppCompatActivity {
             btAdd.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
         }
         btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        if(dataRead.getPower()==0x01){
-            btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        }else{
-            btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+        btUnit.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+        btMode.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+        btTimer.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+        if (dataRead.getPower() == 0x01) {
+            btMinus.setBackgroundColor(ContextCompat.getColor(this, R.color.highligt));
+        } else {
+            btMinus.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
         }
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        fanSelected = false;
-        lightSelected = true;
-        uintSelected = false;
-        modeSelected = false;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
-        if((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&lightSelected) {
+        btQuiet.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+        btTurbo.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        fanSelected = false;
+//        lightSelected = true;
+//        uintSelected = false;
+//        modeSelected = false;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
+        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) && lightSelected) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x18;
-            bytes[2] = (byte) ((dataRead.getLogo() + 1)%2);
+            bytes[2] = (byte) ((dataRead.getLogo() + 1) % 2);
             byte[] bytein = {bytes[1], bytes[2]};
             int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
@@ -647,33 +647,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //设置单位
-    private  void setUnit(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        fanSelected = false;
-        lightSelected = false;
-        uintSelected = true;
-        modeSelected = false;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
+    private  void setUnit() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        fanSelected = false;
+//        lightSelected = false;
+//        uintSelected = true;
+//        modeSelected = false;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
         if (mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x17;
-            bytes[2] = (byte)(dataRead.getUnit());
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
+            bytes[2] = (byte) (dataRead.getUnit());
+            byte[] bytein = {bytes[1], bytes[2]};
+            int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
+            bytes[3] = (byte) (0xFF & (x >> 8));
             bytes[5] = 0x55;
 
             mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
@@ -689,33 +689,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //设置模式
-    private void setMode(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        fanSelected = false;
-        lightSelected = false;
-        uintSelected = false;
-        modeSelected = true;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
-        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)&&(dataRead.getPower()==0x01)) {
+    private void setMode() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        fanSelected = false;
+//        lightSelected = false;
+//        uintSelected = false;
+//        modeSelected = true;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
+        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) && (dataRead.getPower() == 0x01)) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x13;
-            bytes[2] = (byte)((dataRead.getMode()+3)%5) ;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
+            bytes[2] = (byte) ((dataRead.getMode() + 3) % 5);
+            byte[] bytein = {bytes[1], bytes[2]};
+            int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
+            bytes[3] = (byte) (0xFF & (x >> 8));
             bytes[5] = 0x55;
 
             mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
@@ -731,34 +731,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //设置安静
-    private  void setQuiet(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        fanSelected = false;
-        lightSelected = false;
-        uintSelected = false;
-        modeSelected = false;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
-        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)||(dataRead.getPower()==0x01)) {
+    private  void setQuiet() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        fanSelected = false;
+//        lightSelected = false;
+//        uintSelected = false;
+//        modeSelected = false;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
+        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) || (dataRead.getPower() == 0x01)) {
 
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x15;
-            bytes[2] = (byte)((dataRead.getSleep()+1)%2) ;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
+            bytes[2] = (byte) ((dataRead.getSleep() + 1) % 2);
+            byte[] bytein = {bytes[1], bytes[2]};
+            int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
+            bytes[3] = (byte) (0xFF & (x >> 8));
             bytes[5] = 0x55;
 
             mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
@@ -774,33 +774,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //设置加强
-    private  void setTurbo(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        fanSelected = false;
-        lightSelected = false;
-        uintSelected = false;
-        modeSelected = false;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
-        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)||(dataRead.getPower()==0x01)) {
+    private  void setTurbo() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        fanSelected = false;
+//        lightSelected = false;
+//        uintSelected = false;
+//        modeSelected = false;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
+        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) || (dataRead.getPower() == 0x01)) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x14;
-            bytes[2] = (byte)((dataRead.getTurbo()+1)%2) ;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
+            bytes[2] = (byte) ((dataRead.getTurbo() + 1) % 2);
+            byte[] bytein = {bytes[1], bytes[2]};
+            int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
+            bytes[3] = (byte) (0xFF & (x >> 8));
             bytes[5] = 0x55;
 
             mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
@@ -816,34 +816,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //设置定时
-    private  void  setTimer(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        fanSelected = false;
-        lightSelected = false;
-        uintSelected = false;
-        modeSelected = false;
-        timerSelected = true;
-        quitSelected = false;
-        turboSelected = false;
-        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)||(dataRead.getPower()==0x01)) {
+    private  void  setTimer() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        fanSelected = false;
+//        lightSelected = false;
+//        uintSelected = false;
+//        modeSelected = false;
+//        timerSelected = true;
+//        quitSelected = false;
+//        turboSelected = false;
+        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) || (dataRead.getPower() == 0x01)) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x16;
-            bytes[2] = (byte)(dataRead.getCountdown()+5) ;
-            if(bytes[2]<0) bytes[2] +=128;
-            byte[]  bytein = {bytes[1],bytes[2]};
-            int x =  utilCRC.alex_crc16(bytein,2);
+            bytes[2] = (byte) (dataRead.getCountdown() + 5);
+            if (bytes[2] < 0) bytes[2] += 128;
+            byte[] bytein = {bytes[1], bytes[2]};
+            int x = utilCRC.alex_crc16(bytein, 2);
             bytes[4] = (byte) (0xFF & x);
-            bytes[3] = (byte) (0xFF&(x>>8));
+            bytes[3] = (byte) (0xFF & (x >> 8));
             bytes[5] = 0x55;
 
             mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
