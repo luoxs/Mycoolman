@@ -18,11 +18,11 @@
             android:layout_weight="1"
             android:src="@drawable/back"
             android:background="#168AD6"
-            android:scaleType= "fitEnd"
-            android:layout_marginTop="30dp"
+            android:scaleType="fitEnd"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="30dp" />
         <ImageView
             android:id="@+id/imageTitle"
             android:layout_width="0dp"

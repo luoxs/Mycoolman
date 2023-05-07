@@ -89,7 +89,7 @@ public class SettingActivity extends AppCompatActivity {
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
                 int x = dataRead.getBrightness();
-                intent.putExtra("scale", x);
+                intent.putExtra("timer", x);
                 startActivity(intent);
             }
         });
