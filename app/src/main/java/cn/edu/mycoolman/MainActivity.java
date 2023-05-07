@@ -89,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btQuiet;
     private ImageButton btTurbo;
 
-    private  boolean fanSelected;
-    private  boolean lightSelected;
-    private  boolean uintSelected;
-    private  boolean modeSelected;
-    private  boolean timerSelected;
-    private  boolean quitSelected;
-    private  boolean turboSelected;
+//    private  boolean fanSelected;
+//    private  boolean lightSelected;
+//    private  boolean uintSelected;
+//    private  boolean modeSelected;
+//    private  boolean timerSelected;
+//    private  boolean quitSelected;
+//    private  boolean turboSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,54 +104,54 @@ public class MainActivity extends AppCompatActivity {
 
         dataRead = new DataRead();
 
-        btReturn = (ImageButton) findViewById(R.id.btReturn);
-        imageTitle = (ImageView) findViewById(R.id.imageTitle);
-        btSetting = (ImageButton) findViewById(R.id.btSetting);
+        btReturn = findViewById(R.id.btReturn);
+        imageTitle = findViewById(R.id.imageTitle);
+        btSetting = findViewById(R.id.btSetting);
 
-        imageA = (ImageView) findViewById(R.id.imageA);
-        imageWindMachine= (ImageView) findViewById(R.id.imageWindmachine);
-        imageCool= (ImageView) findViewById(R.id.imageCool);
-        imageWarm= (ImageView) findViewById(R.id.imageWarm);
-        imageHimidity= (ImageView) findViewById(R.id.imageHimidity);
+        imageA = findViewById(R.id.imageA);
+        imageWindMachine = findViewById(R.id.imageWindmachine);
+        imageCool = findViewById(R.id.imageCool);
+        imageWarm = findViewById(R.id.imageWarm);
+        imageHimidity = findViewById(R.id.imageHimidity);
 
-        imageLight=(ImageView) findViewById(R.id.imageLight);
-        imageSleep=(ImageView) findViewById(R.id.imageSleep);
-        imageTemperatureHigh=(ImageView) findViewById(R.id.imageTemperatureHigh);
-        imageTemperatureLow=(ImageView) findViewById(R.id.imageTemperatureLow);
+        imageLight = findViewById(R.id.imageLight);
+        imageSleep = findViewById(R.id.imageSleep);
+        imageTemperatureHigh = findViewById(R.id.imageTemperatureHigh);
+        imageTemperatureLow = findViewById(R.id.imageTemperatureLow);
 
-        imageUnit=(ImageView) findViewById(R.id.imageUnit);
-        imageChange=(ImageView) findViewById(R.id.imageChange);
+        imageUnit = findViewById(R.id.imageUnit);
+        imageChange = findViewById(R.id.imageChange);
 
-        imageQuiet=(ImageView) findViewById(R.id.imageQuiet);
-        imageNormal=(ImageView) findViewById(R.id.imageNormal);
-        imageTurbo=(ImageView) findViewById(R.id.imageTurbo);
-        imageWind=(ImageView) findViewById(R.id.imageWind);
-        imageTimerHigh=(ImageView) findViewById(R.id.imageTimerHigh);
-        imageTimerLow=(ImageView) findViewById(R.id.imageTimerLow);
-        viewDot =  findViewById(R.id.viewDot);
-        imageTimerDecimal=(ImageView) findViewById(R.id.imageTimerDecimal);
-        imageTimer = (ImageView)  findViewById(R.id.imageTimer);
+        imageQuiet = findViewById(R.id.imageQuiet);
+        imageNormal = findViewById(R.id.imageNormal);
+        imageTurbo = findViewById(R.id.imageTurbo);
+        imageWind = findViewById(R.id.imageWind);
+        imageTimerHigh = findViewById(R.id.imageTimerHigh);
+        imageTimerLow = findViewById(R.id.imageTimerLow);
+        viewDot = findViewById(R.id.viewDot);
+        imageTimerDecimal = findViewById(R.id.imageTimerDecimal);
+        imageTimer = findViewById(R.id.imageTimer);
 
-        btPower = (ImageButton) findViewById(R.id.btPower);
-        btWind = (ImageButton) findViewById(R.id.btWind);
-        btAdd = (ImageButton) findViewById(R.id.btAdd);
-        btLight = (ImageButton) findViewById(R.id.btLight);
-        btUnit = (ImageButton) findViewById(R.id.btUnit);
-        btMode = (ImageButton) findViewById(R.id.btMode);
-        btTimer = (ImageButton) findViewById(R.id.btTimer);
-        btMinus = (ImageButton) findViewById(R.id.btMinus);
-        btQuiet = (ImageButton) findViewById(R.id.btQuiet);
-        btTurbo = (ImageButton) findViewById(R.id.btTurbo);
-      //  progressDialog = ProgressDialog.show(this,"getCharacter","Get service and character...");
+        btPower = findViewById(R.id.btPower);
+        btWind = findViewById(R.id.btWind);
+        btAdd = findViewById(R.id.btAdd);
+        btLight = findViewById(R.id.btLight);
+        btUnit = findViewById(R.id.btUnit);
+        btMode = findViewById(R.id.btMode);
+        btTimer = findViewById(R.id.btTimer);
+        btMinus = findViewById(R.id.btMinus);
+        btQuiet = findViewById(R.id.btQuiet);
+        btTurbo = findViewById(R.id.btTurbo);
+        //  progressDialog = ProgressDialog.show(this,"getCharacter","Get service and character...");
 
 
-            btReturn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    SharedPreferences sharedPref = MainActivity.this.getSharedPreferences(getString(R.string.filekey), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString(getString(R.string.MACkey), "");
-                    editor.putString(getString(R.string.serviceKey), service.toString());
+        btReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPref = MainActivity.this.getSharedPreferences(getString(R.string.filekey), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString(getString(R.string.MACkey), "");
+                editor.putString(getString(R.string.serviceKey), service.toString());
                     editor.putString(getString(R.string.characterKey), character.toString());
                     editor.apply();
 
@@ -351,33 +351,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //开关操作
-    private  void power(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-
-        fanSelected = false;
-        lightSelected = false;
-        uintSelected = false;
-        modeSelected = false;
-        timerSelected = false;
-        quitSelected = false;
-        turboSelected = false;
+    private  void power() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btAdd.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btMinus.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//
+//        fanSelected = false;
+//        lightSelected = false;
+//        uintSelected = false;
+//        modeSelected = false;
+//        timerSelected = false;
+//        quitSelected = false;
+//        turboSelected = false;
 
         if (mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x10;
-            if(dataRead.getPower()==0x00){
+            if (dataRead.getPower() == 0x00) {
                 bytes[2] = 0x01;
-            }else{
+            } else {
                 bytes[2] = 0x00;
             }
             byte[]  bytein = {bytes[1],bytes[2]};
@@ -441,10 +441,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //按钮加
-    private void  setAdd(){
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-       //所有按钮都不打开，或者设置温度按钮打开，设置温度
+    private void  setAdd() {
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+        //所有按钮都不打开，或者设置温度按钮打开，设置温度
         byte[] bytes = new byte[6];
 //        if((!(fanSelected||lightSelected||modeSelected||timerSelected||quitSelected||turboSelected)||uintSelected)){
         // byte[] bytes = new byte[6];
@@ -518,9 +518,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     //按钮减
-    private void setMinus(){
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+    private void setMinus() {
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
         //所有按钮都不打开，或者设置温度按钮打开，设置温度
         byte[] bytes = new byte[6];
 //        if(!(fanSelected||lightSelected||modeSelected||timerSelected||quitSelected||turboSelected)||uintSelected){
@@ -597,25 +597,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     //设置亮度
-    private void setlight(){
-        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
-        if(dataRead.getPower() == 0x01) {
-            btAdd.setBackgroundColor(ContextCompat.getColor(this, R.color.highligt));
-        }else{
-            btAdd.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
-        }
-        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
-        btUnit.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
-        btMode.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
-        btTimer.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
-        if (dataRead.getPower() == 0x01) {
-            btMinus.setBackgroundColor(ContextCompat.getColor(this, R.color.highligt));
-        } else {
-            btMinus.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
-        }
-        btQuiet.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
-        btTurbo.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+    private void setlight() {
+//        btPower.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        btWind.setBackgroundColor(ContextCompat.getColor(this,R.color.lowlight));
+//        if(dataRead.getPower() == 0x01) {
+//            btAdd.setBackgroundColor(ContextCompat.getColor(this, R.color.highligt));
+//        }else{
+//            btAdd.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        }
+//        btLight.setBackgroundColor(ContextCompat.getColor(this,R.color.highligt));
+//        btUnit.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        btMode.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        btTimer.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        if (dataRead.getPower() == 0x01) {
+//            btMinus.setBackgroundColor(ContextCompat.getColor(this, R.color.highligt));
+//        } else {
+//            btMinus.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        }
+//        btQuiet.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
+//        btTurbo.setBackgroundColor(ContextCompat.getColor(this, R.color.lowlight));
 //        fanSelected = false;
 //        lightSelected = true;
 //        uintSelected = false;
@@ -623,7 +623,7 @@ public class MainActivity extends AppCompatActivity {
 //        timerSelected = false;
 //        quitSelected = false;
 //        turboSelected = false;
-        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) && lightSelected) {
+        if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)) {
             byte[] bytes = new byte[6];
             bytes[0] = (byte) 0xAA;
             bytes[1] = 0x18;
