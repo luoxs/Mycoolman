@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal"
             android:text="manual ajuestable"
             android:textColor="@color/black"
@@ -77,6 +77,7 @@
             android:layout_weight="1">
         </RadioButton>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -86,21 +87,42 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical"
         android:background="#CCD0C3"
-        android:layout_weight="5">
-        <RadioButton
-            android:id="@+id/radioflash"
-            android:layout_width="wrap_content"
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:orientation="horizontal"
-            android:text="automaic"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:layout_weight="1">
-        </RadioButton>
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioflash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:text="automaic"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_weight="1"></RadioButton>
+
+            <TextView
+                android:id="@+id/altertime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:text="Time:"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp" />
+        </LinearLayout>
+
         <SeekBar
-            android:id="@+id/flashtime"
+            android:id="@+id/skFlashTime"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="30dp"
@@ -108,17 +130,43 @@
             android:min="1"
             android:max="10"
             android:progress="5"
-            android:layout_weight="4"/>
+            android:layout_weight="4" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:background="#CCD0C3"
+        android:layout_weight="4">
+
         <TextView
-            android:id="@+id/altertime"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:id="@+id/tvBrightness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:text="brightness:"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:text="Alternating time"
+            android:layout_weight="1"></TextView>
+
+        <SeekBar
+            android:id="@+id/skBrightness"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="30dp"
+            android:min="0"
+            android:max="9"
+            android:progress="5"
+            android:layout_weight="4" />
     </LinearLayout>
 </LinearLayout>

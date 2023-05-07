@@ -29,18 +29,21 @@ import java.util.List;
 import java.util.UUID;
 public class SetColor extends AppCompatActivity {
     private ImageButton btReturn;
-    private SeekBar seekBar;
+    private SeekBar skFlashTime;
+    private SeekBar skBrightness;
     private RadioButton radioColor;
     private RadioButton radioFlash;
-    private int flashtime;
-    private int valueSeekbar;
+    //private int valueSeekbar;
+    private int valueFlash;
+    private int valueBright;
     private TextView alterTime;
+    private TextView tvBright;
 
     private String MAC;
     private UUID service;
     private UUID character;
     private MybluetoothClient mClient;
-    private ProgressDialog progressDialog;
+    //private ProgressDialog progressDialog;
     private DataRead dataRead;
     private MyImageView imageCircle;
 
@@ -58,12 +61,14 @@ public class SetColor extends AppCompatActivity {
         service = (UUID) getIntent().getSerializableExtra("service");
         character = (UUID) getIntent().getSerializableExtra("character");
 
-        imageCircle =(MyImageView) findViewById(R.id.circle);
-        radioColor = (RadioButton) findViewById(R.id.radiocolor);
-        radioFlash = (RadioButton) findViewById(R.id.radioflash);
-        seekBar = (SeekBar) findViewById(R.id.flashtime);
-        btReturn = (ImageButton) findViewById(R.id.btReturn);
-        alterTime = (TextView)findViewById(R.id.altertime);
+        imageCircle = findViewById(R.id.circle);
+        radioColor = findViewById(R.id.radiocolor);
+        radioFlash = findViewById(R.id.radioflash);
+        skFlashTime = findViewById(R.id.skFlashTime);
+        skBrightness = findViewById(R.id.skBrightness);
+        btReturn = findViewById(R.id.btReturn);
+        alterTime = findViewById(R.id.altertime);
+        tvBright = findViewById(R.id.tvBrightness);
 
         dataRead = new DataRead();
         //MAC = "07:34:37:39:12:3A";
@@ -72,8 +77,8 @@ public class SetColor extends AppCompatActivity {
         btReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SetColor.this,SettingActivity.class);
-                intent.putExtra("mac",MAC);
+                Intent intent = new Intent(SetColor.this, SettingActivity.class);
+                intent.putExtra("mac", MAC);
                 intent.putExtra("service",service);
                 intent.putExtra("character",character);
                 startActivity(intent);
@@ -140,22 +145,24 @@ public class SetColor extends AppCompatActivity {
                 }
             }
         });
-        //拖动滚动条
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        //拖动定时滚动条
+        skFlashTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                valueSeekbar = i;
+                valueFlash = i;
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED)||(dataRead.getPower()==0x01)){
+                if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) || (dataRead.getPower() == 0x01)) {
                     byte[] bytes = new byte[6];
                     bytes[0] = (byte) 0xAA;
                     bytes[1] = 0x19;
-                    bytes[2] = (byte) valueSeekbar;
+                    bytes[2] = (byte) valueFlash;
                     byte[]  bytein = {bytes[1],bytes[2]};
                     int x =  utilCRC.alex_crc16(bytein,2);
                     bytes[4] = (byte) (0xFF & x);
@@ -175,6 +182,45 @@ public class SetColor extends AppCompatActivity {
                 }
             }
         });
+
+        //拖动亮度滚动条
+        skBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                valueBright = i;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if ((mClient.getConnectStatus(MAC) == Constants.STATUS_DEVICE_CONNECTED) || (dataRead.getPower() == 0x01)) {
+                    byte[] bytes = new byte[6];
+                    bytes[0] = (byte) 0xAA;
+                    bytes[1] = 0x1D;
+                    bytes[2] = (byte) valueBright;
+                    byte[] bytein = {bytes[1], bytes[2]};
+                    int x = utilCRC.alex_crc16(bytein, 2);
+                    bytes[4] = (byte) (0xFF & x);
+                    bytes[3] = (byte) (0xFF & (x >> 8));
+                    bytes[5] = 0x55;
+
+                    mClient.write(MAC, service, character, bytes, new BleWriteResponse() {
+                        @Override
+                        public void onResponse(int code) {
+                            if (code == REQUEST_SUCCESS) {
+                                Log.v("write result", "######Write datas successfully!######");
+                            } else {
+                                Log.v("write result", "######Write datas faily!######");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
 
         imageCircle.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -339,7 +385,6 @@ public class SetColor extends AppCompatActivity {
                 return false;
             }
         });
-
         getStatus();
     }
 
@@ -379,17 +424,18 @@ public class SetColor extends AppCompatActivity {
     }
 
     private void updateStatus( byte[] data){
-        Log.v("haha","tttttttt");
+        Log.v("haha", "tttttttt");
         dataRead.setData(data);
-        if(dataRead.getAtmosphere() == 0x00){
+        if (dataRead.getAtmosphere() == 0x00) {
             radioColor.setChecked(true);
             radioFlash.setChecked(false);
-        }else{
+        } else {
             radioColor.setChecked(false);
             radioFlash.setChecked(true);
-            //seekBar.setProgress(dataRead.getAtmosphere());
-            alterTime.setText("Alternating time:"+String.valueOf(dataRead.getAtmosphere())+"S");
+            alterTime.setText("time:" + String.valueOf(dataRead.getAtmosphere()) + "S");
         }
+        tvBright.setText("brightness:" + String.valueOf(dataRead.getBrightness()));
+
     }
    // @Override
 //    protected void onStop() {

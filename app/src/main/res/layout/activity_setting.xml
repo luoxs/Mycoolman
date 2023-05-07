@@ -224,7 +224,7 @@
                 android:text="Timer" />
 
             <ImageButton
-                android:id="@+id/setTimer"
+                android:id="@+id/btSetTimer"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"

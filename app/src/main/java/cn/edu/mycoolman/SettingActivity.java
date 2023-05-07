@@ -34,6 +34,7 @@ public class SettingActivity extends AppCompatActivity {
     private ImageButton btReturn;
     private ImageButton btCheckFan;
     private Switch switchUnit;
+    private ImageButton btSetTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +47,20 @@ public class SettingActivity extends AppCompatActivity {
         character = (UUID) getIntent().getSerializableExtra("character");
         dataRead = new DataRead();
 
-        btReturn = (ImageButton) findViewById(R.id.btReturn);
-        btCheckFan = (ImageButton)findViewById(R.id.btCheckFan);
-        changelight =(ImageButton) findViewById(R.id.changelight);
-        switchUnit = (Switch)findViewById(R.id.switchUnit);
+        btReturn = findViewById(R.id.btReturn);
+        btCheckFan = findViewById(R.id.btCheckFan);
+        btSetTimer = findViewById(R.id.btSetTimer);
+        changelight = findViewById(R.id.changelight);
+        switchUnit = findViewById(R.id.switchUnit);
 
-        reset = (Button) findViewById(R.id.reset);
+        reset = findViewById(R.id.reset);
 
         mClient.notify(MAC, service, character, new BleNotifyResponse() {
             @Override
             public void onNotify(UUID service, UUID character, byte[] value) {
                 updateStatus(value);
             }
+
             @Override
             public void onResponse(int code) {
             }
@@ -68,12 +71,25 @@ public class SettingActivity extends AppCompatActivity {
         btCheckFan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SettingActivity.this,FanActivity.class);
-                intent.putExtra("mac",MAC);
-                intent.putExtra("service",service);
-                intent.putExtra("character",character);
+                Intent intent = new Intent(SettingActivity.this, FanActivity.class);
+                intent.putExtra("mac", MAC);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
                 int x = dataRead.getWind();
-                intent.putExtra("scale",dataRead.getWind());
+                intent.putExtra("scale", dataRead.getWind());
+                startActivity(intent);
+            }
+        });
+
+        btSetTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, TimerActivity.class);
+                intent.putExtra("mac", MAC);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
+                int x = dataRead.getBrightness();
+                intent.putExtra("scale", x);
                 startActivity(intent);
             }
         });
@@ -81,10 +97,10 @@ public class SettingActivity extends AppCompatActivity {
         changelight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SettingActivity.this,SetColor.class);
-                intent.putExtra("mac",MAC);
-                intent.putExtra("service",service);
-                intent.putExtra("character",character);
+                Intent intent = new Intent(SettingActivity.this, SetColor.class);
+                intent.putExtra("mac", MAC);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
                 startActivity(intent);
             }
         });
