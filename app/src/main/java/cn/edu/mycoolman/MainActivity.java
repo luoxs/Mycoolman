@@ -955,7 +955,7 @@ public class MainActivity extends AppCompatActivity {
                     imageHimidity.setVisibility(View.VISIBLE);
                     btQuiet.setEnabled(false);
                     btTurbo.setEnabled(false);
-                    btWind.setEnabled(false);
+                    //btWind.setEnabled(false);
                     break;
                 default:
                     break;
