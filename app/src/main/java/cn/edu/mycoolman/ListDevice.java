@@ -70,7 +70,7 @@ public class ListDevice extends AppCompatActivity {
         //lstv.setAdapter(adapter);
         boolean locationEnable = isLocationEnabled();
         if (!locationEnable) {
-            Toast.makeText(ListDevice.this, "Please turn on Bluetooth", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ListDevice.this, "Please turn on location", Toast.LENGTH_SHORT).show();
         }
 
         // 检测PHONE_STATE 如果已授权
@@ -100,17 +100,17 @@ public class ListDevice extends AppCompatActivity {
             public void onDeviceFounded(SearchResult device) {
                 // Beacon beacon = new Beacon(device.scanRecord);
                 // BluetoothLog.v(String.format("----beacon for %s\n%s", device.getAddress(), beacon.toString()));
-                if((!arrayList.contains(device.getName()) && (device.getName().startsWith("GCA") || device.getName().startsWith("CCA")))){
+                if ((!arrayList.contains(device.getName()) && (device.getName().startsWith("CCP15R") || device.getName().startsWith("CCP20R")))) {
                     arrayList.add(device.getName());
                     arrayMAC.add(device.getAddress());
                     lstv.setAdapter(adapter);
                     //保存信息
                     try {
-                        SharedPreferences sharedPref = ListDevice.this.getSharedPreferences(getString(R.string.filekey),Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = ListDevice.this.getSharedPreferences(getString(R.string.filekey), Context.MODE_PRIVATE);
                         String fileString = getResources().getString(R.string.filekey);
-                        String MACString = sharedPref.getString(getString(R.string.MACkey),fileString);
-                        UUID service = UUID.fromString(sharedPref.getString(getString(R.string.serviceKey),fileString));
-                        UUID character = UUID.fromString(sharedPref.getString(getString(R.string.characterKey),fileString));
+                        String MACString = sharedPref.getString(getString(R.string.MACkey), fileString);
+                        UUID service = UUID.fromString(sharedPref.getString(getString(R.string.serviceKey), fileString));
+                        UUID character = UUID.fromString(sharedPref.getString(getString(R.string.characterKey), fileString));
                         if(MACString.equals(device.getAddress())){
                             mClient.stopSearch();
                             progressDialog = ProgressDialog.show(ListDevice.this,"Connect","Connect device...");
@@ -171,17 +171,17 @@ public class ListDevice extends AppCompatActivity {
                         .build();
 
                 myDeviceName =  arrayList.get(i);
-                if(myDeviceName.startsWith("GCA")||myDeviceName.startsWith("CCA")){
-                    mClient.connect(arrayMAC.get(i),options, new BleConnectResponse() {
+                if (myDeviceName.startsWith("CCP15R") || myDeviceName.startsWith("CC20RP")) {
+                    mClient.connect(arrayMAC.get(i), options, new BleConnectResponse() {
                         @Override
                         public void onResponse(int code, BleGattProfile profile) {
                             if (code == REQUEST_SUCCESS) {
                                 Log.d("connect", "---Connected successfully!---");
                                 List<BleGattService> listServices = profile.getServices();
-                                if(listServices.size()>0){
+                                if (listServices.size() > 0) {
                                     service = listServices.get(2).getUUID();
                                     List<BleGattCharacter> listCharacters = listServices.get(2).getCharacters();
-                                    if(listCharacters.size()>0){
+                                    if (listCharacters.size() > 0) {
                                         character = listCharacters.get(0).getUuid();
                                         //updateStatus();
                                         progressDialog.dismiss();
