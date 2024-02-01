@@ -7,7 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="lowlight">#23221f</color>
-    <color name="highligt">#168AD6</color>
-    <color name="btn_shape">#168AD6</color>
+    <color name="r142">#ff8E968f</color>
+    <color name="r121">#FF79807A</color>
+    <color name="r105">#FF694F53</color>
+    <color name="r212">#FFD4D3CF</color>
+    <color name="r100">#FF646B65</color>
 </resources>
