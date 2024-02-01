@@ -33,6 +33,8 @@ import com.inuker.bluetooth.library.BluetoothClient;
 import com.inuker.bluetooth.library.beacon.Beacon;
 import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
+import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
+import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 import com.inuker.bluetooth.library.model.BleGattCharacter;
 import com.inuker.bluetooth.library.model.BleGattProfile;
 import com.inuker.bluetooth.library.model.BleGattService;
@@ -40,12 +42,14 @@ import com.inuker.bluetooth.library.search.SearchRequest;
 import com.inuker.bluetooth.library.search.SearchResult;
 import com.inuker.bluetooth.library.search.response.SearchResponse;
 import com.inuker.bluetooth.library.utils.BluetoothLog;
+
 import cn.edu.mycoolman.MybluetoothClient;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ListDevice extends AppCompatActivity {
+public class ListDevice extends AppCompatActivity implements BleWriteResponse {
     private ArrayList<String> arrayList;
     private ArrayList<String> arrayMAC;
     private BluetoothClient mClient;
@@ -57,6 +61,8 @@ public class ListDevice extends AppCompatActivity {
     private UUID service;
     private UUID character;
     private ProgressDialog progressDialog;
+    private String passstr;
+    private DataRead dataRead;
 
 
     @Override
@@ -154,13 +160,25 @@ public class ListDevice extends AppCompatActivity {
                                         character = listCharacters.get(0).getUuid();
                                         //updateStatus();
                                         progressDialog.dismiss();
+                                        mClient.notify(MAC, service, character, new BleNotifyResponse() {
+                                            @Override
+                                            public void onNotify(UUID service, UUID character, byte[] value) {
+                                                updateStatus(value);
+                                            }
 
+                                            @Override
+                                            public void onResponse(int code) {
+                                            }
+                                        });
+                                        checkpass(arrayMAC.get(i));
+
+/*
                                         Intent intent = new Intent(ListDevice.this,MainActivity.class);
                                         // intent.putExtra("devicename",arrayList.get(i));
                                         intent.putExtra("mac",arrayMAC.get(i));
                                         intent.putExtra("service",service);
                                         intent.putExtra("character",character);
-                                        startActivity(intent);
+                                        startActivity(intent);*/
                                     }
                                 }
                                 progressDialog.dismiss();
@@ -182,9 +200,71 @@ public class ListDevice extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    //看连接的设备是否有保存过的密码
+    private void checkpass(String mac) {
+        try {
+            SharedPreferences sharepre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
+            String MacStr = sharepre.getString("mackey", "");
+            if (MacStr.equals(mac)) {
+                Intent intent = new Intent(ListDevice.this, MainActivity.class);
+                // intent.putExtra("devicename",arrayList.get(i));
+                intent.putExtra("mac", mac);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(ListDevice.this, PassActivity.class);
+                // intent.putExtra("devicename",arrayList.get(i));
+                intent.putExtra("mac", mac);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            Log.v("data store errr", e.toString());
+        }
+
 
     }
 
+
+    //获取密码
+    public void getPassWord() {
+        if (character != null) {
+            byte[] write = new byte[8];
+            write[0] = (byte) 0xAA;
+            write[1] = 0x09;
+            write[2] = 0x01;
+            write[3] = 0x00;
+            write[4] = 0x00;
+            byte[] bytin = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytin, 4);
+            write[6] = (byte) (0xFF & x);
+            write[5] = (byte) (0xFF & (x >> 8));
+            write[7] = 0x55;
+            mClient.write(MAC, service, character, write, this);
+        }
+    }
+
+    //收到通知
+    public void updateStatus(byte[] data) {
+        Log.v("update----", "now---");
+//        if(data.length == 22){
+//            dataRead.setData(data);
+//
+//        }
+    }
+
+    //对广播反应
+    @Override
+    public void onResponse(int code) {
+        if (code == REQUEST_SUCCESS) {
+            //进入密码输入框
+        }
+
+    }
 
     //判断用户是否开启定位
     public boolean isLocationEnabled() {
