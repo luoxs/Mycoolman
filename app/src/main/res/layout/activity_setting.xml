@@ -14,8 +14,7 @@
         android:layout_marginTop="0dp"
         android:background="@color/r105" />
 
-    <ImageButton
-        android:id="@+id/btcack"
+    <ImageView
         android:layout_width="112dp"
         android:layout_height="18dp"
         android:layout_marginLeft="72dp"
@@ -23,7 +22,8 @@
         android:scaleType="fitXY"
         android:background="@drawable/type" />
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/btcack"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginLeft="20dp"
@@ -36,5 +36,95 @@
         android:layout_marginLeft="195dp"
         android:layout_marginTop="29dp"
         android:src="@drawable/signal" />
+
+    <ImageButton
+        android:id="@+id/btsetting"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/setting" />
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="108dp"
+        android:background="@color/white" />
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="155dp"
+        android:background="@color/white" />
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="199dp"
+        android:background="@color/white" />
+
+
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="84dp"
+        android:text="Bluetooth"
+        android:textColor="@color/r105"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="129dp"
+        android:text="Temperature Unit"
+        android:textColor="@color/r105"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="173dp"
+        android:text="Version"
+        android:textColor="@color/r105"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btconnect"
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:layout_marginLeft="167dp"
+        android:layout_marginTop="84dp"
+        android:textColor="@color/white"
+        android:background="@color/r142"
+        android:textSize="12sp"
+        android:text="Conneted >" />
+
+    <Button
+        android:id="@+id/btunit"
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:layout_marginLeft="167dp"
+        android:layout_marginTop="129dp"
+        android:textColor="@color/white"
+        android:background="@color/r142"
+        android:textSize="12sp"
+        android:text="°C >" />
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:layout_marginLeft="167dp"
+        android:layout_marginTop="172dp"
+        android:textColor="@color/white"
+        android:background="@color/r142"
+        android:textSize="12sp"
+        android:text="1.2.345>" />
 
 </RelativeLayout>
