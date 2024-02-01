@@ -129,7 +129,7 @@
         android:layout_marginTop="464dp"
         android:text="ON\nOFF"
         android:textColor="@color/white"
-        android:textSize="4pt"
+        android:textSize="8sp"
         android:lines="2"
         android:textAlignment="center" />
 
@@ -140,7 +140,7 @@
         android:layout_marginTop="464dp"
         android:text="Temperature\nSetting"
         android:textColor="@color/white"
-        android:textSize="4pt"
+        android:textSize="8sp"
         android:lines="2"
         android:textAlignment="center" />
 
@@ -151,7 +151,7 @@
         android:layout_marginTop="464dp"
         android:text="Battery\nProtection"
         android:textColor="@color/white"
-        android:textSize="4pt"
+        android:textSize="8sp"
         android:lines="2"
         android:textAlignment="center" />
 
@@ -162,9 +162,77 @@
         android:layout_marginTop="464dp"
         android:text="Turbo\nMode"
         android:textColor="@color/white"
-        android:textSize="4pt"
+        android:textSize="8sp"
         android:lines="2"
         android:textAlignment="center" />
 
+    <ImageButton
+        android:id="@+id/btadd"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="184dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btadd" />
+
+    <ImageButton
+        android:id="@+id/btdrop"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="314dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btminus" />
+
+
+    <TextView
+        android:id="@+id/lbcurrent"
+        android:layout_width="128dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginTop="116dp"
+        android:text="+12°C"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:lines="2"
+        android:textAlignment="center" />
+
+
+    <TextView
+        android:id="@+id/lbsetting"
+        android:layout_width="128dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginTop="248dp"
+        android:text="-18°C"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:lines="2"
+        android:textAlignment="center" />
+
+
+    <TextView
+        android:id="@+id/lbselected"
+        android:layout_width="158dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="368dp"
+        android:text="Preselected Temperature"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:lines="2"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/lbmode"
+        android:layout_width="131dp"
+        android:layout_height="14dp"
+        android:layout_marginLeft="61dp"
+        android:layout_marginTop="87dp"
+        android:text="Current Temperature"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:lines="2"
+        android:textAlignment="center" />
 
 </RelativeLayout>
