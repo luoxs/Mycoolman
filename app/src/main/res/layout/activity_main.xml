@@ -16,13 +16,19 @@
 
     <ImageButton
         android:id="@+id/btcack"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="29dp"
-        android:layout_width="17dp"
+        android:layout_width="112dp"
         android:layout_height="18dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="30dp"
         android:scaleType="fitXY"
-        android:src="@drawable/setting" />
+        android:background="@drawable/type" />
 
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="108dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/type" />
 
     <ImageView
         android:layout_width="18dp"
