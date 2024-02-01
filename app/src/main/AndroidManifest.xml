@@ -17,12 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
+            android:name=".PassActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ListDevice"
-            android:exported="false" />
-        <!-- android:theme="@style/Theme.MyCoolMan" -->
+            android:exported="false" /> <!-- android:theme="@style/Theme.MyCoolMan" -->
         <activity
             android:name=".HomeActivity"
             android:exported="true">
