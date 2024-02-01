@@ -104,37 +104,6 @@ public class ListDevice extends AppCompatActivity {
                     arrayList.add(device.getName());
                     arrayMAC.add(device.getAddress());
                     lstv.setAdapter(adapter);
-                    //保存信息
-                    try {
-                        SharedPreferences sharedPref = ListDevice.this.getSharedPreferences(getString(R.string.filekey), Context.MODE_PRIVATE);
-                        String fileString = getResources().getString(R.string.filekey);
-                        String MACString = sharedPref.getString(getString(R.string.MACkey), fileString);
-                        UUID service = UUID.fromString(sharedPref.getString(getString(R.string.serviceKey), fileString));
-                        UUID character = UUID.fromString(sharedPref.getString(getString(R.string.characterKey), fileString));
-                        if(MACString.equals(device.getAddress())){
-                            mClient.stopSearch();
-                            progressDialog = ProgressDialog.show(ListDevice.this,"Connect","Connect device...");
-                            BleConnectOptions options = new BleConnectOptions.Builder()
-                                    .setConnectRetry(3)   // 连接如果失败重试3次
-                                    .setConnectTimeout(30000)   // 连接超时30s
-                                    .setServiceDiscoverRetry(3)  // 发现服务如果失败重试3次
-                                    .setServiceDiscoverTimeout(20000)  // 发现服务超时20s
-                                    .build();
-                            mClient.connect(MACString,options, new BleConnectResponse() {
-                                @Override
-                                public void onResponse(int code, BleGattProfile data) {
-                                    Intent intent = new Intent(ListDevice.this,MainActivity.class);
-                                    // intent.putExtra("devicename",arrayList.get(i));
-                                    intent.putExtra("mac",MACString);
-                                    intent.putExtra("service",service);
-                                    intent.putExtra("character",character);
-                                    startActivity(intent);
-                                }
-                            });
-                        }
-                    }catch (Exception ex){
-                        Log.v("file read error",ex.toString());
-                    }
                 }
             }
 
@@ -210,39 +179,6 @@ public class ListDevice extends AppCompatActivity {
                 }}
         });
 
-        btDiscover = (Button) findViewById(R.id.discover);
-        btDiscover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                arrayList.clear();
-                mClient.search(request, new SearchResponse() {
-                    @Override
-                    public void onSearchStarted() {
-                        progressDialog = ProgressDialog.show(ListDevice.this,"Search","descover devices...");
-                    }
-
-                    @Override
-                    public void onDeviceFounded(SearchResult device) {
-                        Beacon beacon = new Beacon(device.scanRecord);
-                        if((!arrayList.contains(device.getName()) && (device.getName().startsWith("GCA") || device.getName().startsWith("CCA")))){
-                            arrayList.add(device.getName());
-                            arrayMAC.add(device.getAddress());
-                            lstv.setAdapter(adapter);
-                        }
-                    }
-
-                    @Override
-                    public void onSearchStopped() {
-                        progressDialog.dismiss();;
-                    }
-
-                    @Override
-                    public void onSearchCanceled() {
-
-                    }
-                });
-            }
-        });
     }
 
     //判断用户是否开启定位
