@@ -1,89 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="330dp"
-    android:layout_height="509dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/r142"
+    tools:context=".PassActivity">
 
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="448dp"
-        android:orientation="vertical"
-        android:background="@color/r105"
-        xmlns:tools="http://schemas.android.com/tools">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/r105" />
 
-        <ImageView
-            android:id="@+id/imageDV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/mycoolman" />
+    <ImageView
+        android:layout_width="112dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/type"
+        android:scaleType="fitXY" />
 
-        <ProgressBar
-            android:id="@+id/prgbar"
-            android:background="@color/r100"
-            android:indeterminateDuration="@integer/material_motion_duration_short_1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:indeterminateBehavior="repeat" />
-        <!--android:indeterminateDrawable="@drawable/progressbar_style"-->
+    <ImageButton
+        android:id="@+id/btcack"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/back" />
 
-        <LinearLayout
-            android:id="@+id/pass"
-            android:layout_width="match_parent"
-            android:layout_height="81dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="28dp">
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/signal" />
 
-            <EditText
-                android:id="@+id/password1"
-                android:layout_marginEnd="22dp"
-                android:layout_width="67dp"
-                android:layout_height="81dp"
-                android:gravity="center"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:inputType="text"
-                android:background="@color/white"
-                android:text=""
-                android:textColor="#000000"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:textSize="48sp" />
+    <ImageButton
+        android:id="@+id/btsetting"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/setting"
+        android:scaleType="fitXY" />
 
-            <EditText
-                android:id="@+id/password2"
-                android:layout_width="67dp"
-                android:layout_height="81dp"
-                android:gravity="center"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:inputType="text"
-                android:background="@color/white"
-                android:text=""
-                android:textColor="#000000"
-                android:textSize="48sp" />
-
-            <EditText
-                android:id="@+id/password3"
-                android:layout_marginStart="22dp"
-                android:layout_width="67dp"
-                android:layout_height="81dp"
-                android:gravity="center"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:inputType="text"
-                android:background="@color/white"
-                android:text=""
-                android:textColor="#000000"
-                android:textSize="48sp" />
-        </LinearLayout>
-    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/prgbar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@color/r100"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDuration="@integer/material_motion_duration_short_1" />
+    <!--android:indeterminateDrawable="@drawable/progressbar_style"-->
 
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/password1"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="207dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLength="1"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="#000000"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/password2"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="109dp"
+        android:layout_marginTop="207dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLength="1"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="#000000"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/password3"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="166dp"
+        android:layout_marginTop="207dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:inputType="text"
+        android:maxLength="1"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="#000000"
+        android:textSize="48sp" />
+
+    <TextView
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="267dp"
+        android:lines="3"
+        android:textAlignment="center"
+        android:text="Please enter the three-digit combination\nof numbers/letters displayed onth\ncooler/'s LED screen.[0~9,A~F"
+        android:textSize="10sp" />
+
+
+</RelativeLayout>
