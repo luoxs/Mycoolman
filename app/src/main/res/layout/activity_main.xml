@@ -14,8 +14,7 @@
         android:layout_marginTop="0dp"
         android:background="@color/r105" />
 
-    <ImageButton
-        android:id="@+id/btcack"
+    <ImageView
         android:layout_width="112dp"
         android:layout_height="18dp"
         android:layout_marginLeft="72dp"
@@ -23,12 +22,13 @@
         android:scaleType="fitXY"
         android:background="@drawable/type" />
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/btcack"
         android:layout_width="18dp"
-        android:layout_height="108dp"
+        android:layout_height="18dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="29dp"
-        android:src="@drawable/type" />
+        android:src="@drawable/back" />
 
     <ImageView
         android:layout_width="18dp"
@@ -37,21 +37,22 @@
         android:layout_marginTop="29dp"
         android:src="@drawable/signal" />
 
+    <ImageButton
+        android:id="@+id/btsetting"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/setting" />
+
+
     <ImageView
         android:layout_width="229dp"
         android:layout_height="65dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="81dp"
         android:src="@drawable/recreationalsearies" />
-
-    <ImageButton
-        android:id="@+id/btsetting"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="406dp"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/poweroff" />
 
 
     <ImageView
@@ -88,7 +89,6 @@
         android:textSize="12sp"
         android:lines="3"
         android:textAlignment="center" />
-
 
     <ImageButton
         android:id="@+id/btpower"
