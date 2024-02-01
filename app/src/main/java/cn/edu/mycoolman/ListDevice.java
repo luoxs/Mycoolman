@@ -50,13 +50,14 @@ public class ListDevice extends AppCompatActivity {
     private ArrayList<String> arrayMAC;
     private BluetoothClient mClient;
     private ArrayAdapter<String> adapter;
-    private Button btDiscover;
-    private String  myDeviceName;
+    private Button btcancel;
+    private String myDeviceName;
 
     private String MAC;
     private UUID service;
     private UUID character;
     private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,6 @@ public class ListDevice extends AppCompatActivity {
             String[] permission = {"android.permission.ACCESS_FINE_LOCATION","android.permission.ACCESS_COARSE_LOCATION"};
             ActivityCompat.requestPermissions(this,permission, 1);
         }
-
         MybluetoothClient mClient = MybluetoothClient.getInstance(getApplicationContext());
 
         // BluetoothClient mClient = new BluetoothClient(this);
@@ -154,13 +154,6 @@ public class ListDevice extends AppCompatActivity {
                                         character = listCharacters.get(0).getUuid();
                                         //updateStatus();
                                         progressDialog.dismiss();
-                                        //保存信息
-                                        SharedPreferences sharedPref = ListDevice.this.getSharedPreferences(getString(R.string.filekey),Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sharedPref.edit();
-                                        editor.putString(getString(R.string.MACkey), arrayMAC.get(i));
-                                        editor.putString(getString(R.string.serviceKey), service.toString());
-                                        editor.putString(getString(R.string.characterKey), character.toString());
-                                        editor.apply();
 
                                         Intent intent = new Intent(ListDevice.this,MainActivity.class);
                                         // intent.putExtra("devicename",arrayList.get(i));
@@ -171,15 +164,27 @@ public class ListDevice extends AppCompatActivity {
                                     }
                                 }
                                 progressDialog.dismiss();
-                            }else if(code == REQUEST_FAILED){
+                            } else if (code == REQUEST_FAILED) {
                                 progressDialog.dismiss();
                             }
                         }
                     });
-                }}
+                }
+            }
+        });
+
+        btcancel = findViewById(R.id.btcancel);
+        btcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(ListDevice.this, HomeActivity.class);
+                startActivity(intent);
+            }
         });
 
     }
+
 
     //判断用户是否开启定位
     public boolean isLocationEnabled() {
