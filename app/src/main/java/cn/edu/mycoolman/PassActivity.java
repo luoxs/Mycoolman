@@ -75,7 +75,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             write[6] = (byte) (0xFF & x);
             write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
-            mClient.write(MAC, service, character, write, this);
+            mClient.writeNoRsp(MAC, service, character, write, this);
         }
     }
 

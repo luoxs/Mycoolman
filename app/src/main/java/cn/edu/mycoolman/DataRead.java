@@ -35,18 +35,17 @@ public class DataRead {
         this.frozereal = data[5];
         this.turbo = data[6];
         this.heat = data[7];
-        this.unit = data[8];
-        this.battery = data[9];
-        this.unit = data[10];
-        this.status = data[11];
-        this.errorcode = data[12];
-        this.vhigh = data[13];
-        this.vlow = data[14];
-        this.gc = data[15];
-        this.tempheat = data[16];
-        this.timer = data[17];
-        this.code1 = data[18];
-        this.code2 = data[10];
+        this.battery = data[8];
+        this.unit = data[9];
+        this.status = data[10];
+        this.errorcode = data[11];
+        this.vhigh = data[12];
+        this.vlow = data[13];
+        this.gc = data[14];
+        this.tempheat = data[15];
+        this.timer = data[16];
+        this.code1 = data[17];
+        this.code2 = data[18];
     }
 
     public byte getStart() {
