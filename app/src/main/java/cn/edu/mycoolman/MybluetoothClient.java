@@ -7,7 +7,7 @@ import com.inuker.bluetooth.library.BluetoothClient;
 import java.io.Serializable;
 
 public class MybluetoothClient extends BluetoothClient implements Serializable {
-    private MybluetoothClient(Context context) {
+    MybluetoothClient(Context context) {
         super(context);
     }
     private static volatile MybluetoothClient instance;

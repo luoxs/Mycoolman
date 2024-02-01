@@ -81,14 +81,15 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
         }
 
         // 检测PHONE_STATE 如果已授权
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //做你想做的
-            Log.v("hhhhhhh","okokokokokookok");
-        }else{
-            String[] permission = {"android.permission.ACCESS_FINE_LOCATION","android.permission.ACCESS_COARSE_LOCATION"};
-            ActivityCompat.requestPermissions(this,permission, 1);
+            Log.v("hhhhhhh", "okokokokokookok");
+        } else {
+            String[] permission = {"android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"};
+            ActivityCompat.requestPermissions(this, permission, 1);
         }
-        MybluetoothClient mClient = MybluetoothClient.getInstance(getApplicationContext());
+
+        mClient = MybluetoothClient.getInstance(getApplicationContext());
 
         // BluetoothClient mClient = new BluetoothClient(this);
         SearchRequest request = new SearchRequest.Builder()
@@ -158,27 +159,8 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                                     List<BleGattCharacter> listCharacters = listServices.get(2).getCharacters();
                                     if (listCharacters.size() > 0) {
                                         character = listCharacters.get(0).getUuid();
-                                        //updateStatus();
                                         progressDialog.dismiss();
-                                        mClient.notify(MAC, service, character, new BleNotifyResponse() {
-                                            @Override
-                                            public void onNotify(UUID service, UUID character, byte[] value) {
-                                                updateStatus(value);
-                                            }
-
-                                            @Override
-                                            public void onResponse(int code) {
-                                            }
-                                        });
                                         checkpass(arrayMAC.get(i));
-
-/*
-                                        Intent intent = new Intent(ListDevice.this,MainActivity.class);
-                                        // intent.putExtra("devicename",arrayList.get(i));
-                                        intent.putExtra("mac",arrayMAC.get(i));
-                                        intent.putExtra("service",service);
-                                        intent.putExtra("character",character);
-                                        startActivity(intent);*/
                                     }
                                 }
                                 progressDialog.dismiss();
@@ -191,6 +173,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
             }
         });
 
+        //取消
         btcancel = findViewById(R.id.btcancel);
         btcancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,32 +213,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
     }
 
 
-    //获取密码
-    public void getPassWord() {
-        if (character != null) {
-            byte[] write = new byte[8];
-            write[0] = (byte) 0xAA;
-            write[1] = 0x09;
-            write[2] = 0x01;
-            write[3] = 0x00;
-            write[4] = 0x00;
-            byte[] bytin = {write[1], write[2], write[3], write[4]};
-            int x = utilCRC.alex_crc16(bytin, 4);
-            write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF & (x >> 8));
-            write[7] = 0x55;
-            mClient.write(MAC, service, character, write, this);
-        }
-    }
 
-    //收到通知
-    public void updateStatus(byte[] data) {
-        Log.v("update----", "now---");
-//        if(data.length == 22){
-//            dataRead.setData(data);
-//
-//        }
-    }
 
     //对广播反应
     @Override
