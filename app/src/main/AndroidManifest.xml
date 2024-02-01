@@ -25,7 +25,8 @@
             android:value="522" />
 
         <activity
-            android:name=".PassActivity"
+            android:name=".MainActivity"
+
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
@@ -34,7 +35,7 @@
             android:name=".ListDevice"
             android:exported="false" /> <!-- android:theme="@style/Theme.MyCoolMan" -->
         <activity
-            android:name=".MainActivity"
+            android:name=".PassActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
