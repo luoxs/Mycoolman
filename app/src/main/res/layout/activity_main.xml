@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageButton
+        android:id="@+id/btpower"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="406dp"
+        android:layout_width="56dp"
+        android:layout_height="57dp"
+        android:src="@drawable/poweroff" />
+
+    <ImageButton
+        android:id="@+id/bttemp"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="406dp"
+        android:layout_width="56dp"
+        android:layout_height="57dp"
+        android:src="@drawable/tempoff" />
+
+    <ImageButton
+        android:id="@+id/btbattery"
+        android:layout_marginLeft="126dp"
+        android:layout_marginTop="406dp"
+        android:layout_width="56dp"
+        android:layout_height="57dp"
+        android:src="@drawable/batteryoff" />
+
+    <ImageButton
+        android:id="@+id/btturbo"
+        android:layout_marginLeft="183dp"
+        android:layout_marginTop="406dp"
+        android:layout_width="56dp"
+        android:layout_height="57dp"
+        android:src="@drawable/turbooff" />
+
 </RelativeLayout>
