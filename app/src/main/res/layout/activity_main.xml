@@ -61,8 +61,6 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="81dp"
         android:src="@drawable/recreationalsearies" />
-
-
     <TextView
         android:layout_width="148dp"
         android:layout_height="32dp"
@@ -88,39 +86,39 @@
 
     <ImageButton
         android:id="@+id/btpower"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="406dp"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/poweroff" />
+        android:background="@drawable/poweroff"
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:id="@+id/bttemp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_marginLeft="70dp"
         android:layout_marginTop="406dp"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/tempoff" />
+        android:background="@drawable/tempoff"
+        android:scaleType="fitCenter" />
 
     <ImageButton
         android:id="@+id/btbattery"
         android:layout_marginLeft="126dp"
         android:layout_marginTop="406dp"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/batteryoff" />
+        android:background="@drawable/batteryoff" />
 
     <ImageButton
         android:id="@+id/btturbo"
         android:layout_marginLeft="182dp"
         android:layout_marginTop="406dp"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/turbooff" />
+        android:background="@drawable/turbooff" />
 
     <TextView
         android:layout_width="19dp"
@@ -173,16 +171,16 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/btadd" />
+        android:background="@drawable/add" />
 
     <ImageButton
         android:id="@+id/btdrop"
-        android:layout_marginLeft="106dp"
-        android:layout_marginTop="314dp"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/btminus" />
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="314dp"
+        android:background="@drawable/sub"
+        android:scaleType="fitCenter" />
 
 
     <TextView
@@ -234,5 +232,35 @@
         android:textSize="12sp"
         android:lines="2"
         android:textAlignment="center" />
+
+
+    <ImageButton
+        android:id="@+id/bthigh"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="182dp"
+        android:layout_width="110dp"
+        android:layout_height="44dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/highoff" />
+
+    <ImageButton
+        android:id="@+id/btmedium"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="238dp"
+        android:layout_width="110dp"
+        android:layout_height="44dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/mediumoff" />
+
+    <ImageButton
+        android:id="@+id/btlow"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="294dp"
+        android:layout_width="110dp"
+        android:layout_height="44dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/lowoff"
+        android:src="@drawable/lowoff" />
+
 
 </RelativeLayout>
