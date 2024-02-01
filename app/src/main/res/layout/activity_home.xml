@@ -1,107 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/r142"
     tools:context=".HomeActivity">
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:background="@color/r105">
+        android:layout_height="52dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/r105" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent" />
+    <ImageView
+        android:layout_width="229dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="81dp"
+        android:src="@drawable/recreationalsearies" />
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="10"
-            android:layout_height="match_parent"
-            android:scaleType="fitEnd"
-            android:background="@color/r105"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/mycoolman" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="10"
+        android:background="@color/r105"
+        android:scaleType="fitEnd"
+        android:src="@drawable/mycoolman" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:background="@color/r142"
-        android:orientation="vertical">
+    <TextView
+        android:layout_width="172dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="186dp"
+        android:lines="4"
+        android:text="To connect your MyCoolman\nwith Bluetooth\nensure the cooler is set to\nBluetooth ON"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_weight="130"
-            android:src="@drawable/recreationalsearies" />
+    <ImageButton
+        android:id="@+id/btscanqr"
+        android:layout_width="110dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginLeft="74dp"
+        android:background="@drawable/scanqr" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="74"
-            android:lines="4"
-            android:text="To connect your MyCoolman\nwith Bluetooth\nensure the cooler set to\Bluetooth ON"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="353dp"
+        android:lines="2"
+        android:text="Or use the phone menue\nand search for device"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginLeft="120dp"
-            android:layout_marginRight="120dp"
-            android:layout_weight="44"
-            android:layout_gravity="center"
-            android:background="@drawable/scanqr" />
+    <ImageButton
+        android:id="@+id/btBluetooth"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="409dp"
+        android:background="@drawable/bluetooth" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="71"
-            android:lines="4"
-            android:text="To connect \nwith Bluetooth\nensure the cooler set to\Bluetooth ON"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="53"
-            android:layout_marginBottom="50dp"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
-
-            <ImageButton
-                android:id="@+id/btBluetooth"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/bluetooth" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -4,22 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/r142"
     tools:context=".MainActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/r105" />
+
+    <ImageButton
+        android:id="@+id/btcack"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="29dp"
+        android:layout_width="17dp"
+        android:layout_height="18dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/setting" />
+
+
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/signal" />
+
+    <ImageView
+        android:layout_width="229dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="81dp"
+        android:src="@drawable/recreationalsearies" />
+
+    <ImageButton
+        android:id="@+id/btsetting"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="406dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/poweroff" />
+
+
+    <ImageView
+        android:layout_width="229dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="81dp"
+        android:src="@drawable/recreationalsearies" />
+
+    <ImageView
+        android:layout_width="229dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="81dp"
+        android:src="@drawable/recreationalsearies" />
+
+
+    <TextView
+        android:layout_width="148dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="182dp"
+        android:text="You MyCoolman is\nconnected to Bluetooth"
+        android:textColor="@color/white"
+        android:lines="2"
+        android:textSize="12sp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="56dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="240dp"
+        android:text="You can now turn it on\nand control all functions\nwith the App."
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:lines="3"
+        android:textAlignment="center" />
+
 
     <ImageButton
         android:id="@+id/btpower"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="14dp"
         android:layout_marginTop="406dp"
         android:layout_width="56dp"
-        android:layout_height="57dp"
+        android:layout_height="56dp"
+        android:scaleType="fitXY"
         android:src="@drawable/poweroff" />
 
     <ImageButton
         android:id="@+id/bttemp"
-        android:layout_marginLeft="71dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="406dp"
         android:layout_width="56dp"
-        android:layout_height="57dp"
+        android:layout_height="56dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/tempoff" />
 
     <ImageButton
@@ -27,15 +109,62 @@
         android:layout_marginLeft="126dp"
         android:layout_marginTop="406dp"
         android:layout_width="56dp"
-        android:layout_height="57dp"
+        android:layout_height="56dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/batteryoff" />
 
     <ImageButton
         android:id="@+id/btturbo"
-        android:layout_marginLeft="183dp"
+        android:layout_marginLeft="182dp"
         android:layout_marginTop="406dp"
         android:layout_width="56dp"
-        android:layout_height="57dp"
+        android:layout_height="56dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/turbooff" />
+
+    <TextView
+        android:layout_width="19dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="464dp"
+        android:text="ON\nOFF"
+        android:textColor="@color/white"
+        android:textSize="4pt"
+        android:lines="2"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="54dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="71dp"
+        android:layout_marginTop="464dp"
+        android:text="Temperature\nSetting"
+        android:textColor="@color/white"
+        android:textSize="4pt"
+        android:lines="2"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="42dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="133dp"
+        android:layout_marginTop="464dp"
+        android:text="Battery\nProtection"
+        android:textColor="@color/white"
+        android:textSize="4pt"
+        android:lines="2"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="26dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="198dp"
+        android:layout_marginTop="464dp"
+        android:text="Turbo\nMode"
+        android:textColor="@color/white"
+        android:textSize="4pt"
+        android:lines="2"
+        android:textAlignment="center" />
+
 
 </RelativeLayout>
