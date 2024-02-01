@@ -48,6 +48,7 @@
 
 
     <ImageView
+        android:id="@+id/img"
         android:layout_width="229dp"
         android:layout_height="65dp"
         android:layout_marginLeft="12dp"
@@ -69,17 +70,19 @@
         android:layout_marginTop="81dp"
         android:src="@drawable/recreationalsearies" />
     <TextView
+        android:id="@+id/label1"
         android:layout_width="148dp"
         android:layout_height="32dp"
         android:layout_marginLeft="52dp"
         android:layout_marginTop="182dp"
-        android:text="You MyCoolman is\nconnected to Bluetooth"
+        android:text="Your MyCoolman is\nconnected to Bluetooth"
         android:textColor="@color/white"
         android:lines="2"
         android:textSize="12sp"
         android:textAlignment="center" />
 
     <TextView
+        android:id="@+id/label2"
         android:layout_width="150dp"
         android:layout_height="56dp"
         android:layout_marginLeft="52dp"
