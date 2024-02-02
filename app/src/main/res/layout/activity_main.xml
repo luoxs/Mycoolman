@@ -55,20 +55,6 @@
         android:layout_marginTop="81dp"
         android:src="@drawable/recreationalsearies" />
 
-
-    <ImageView
-        android:layout_width="229dp"
-        android:layout_height="65dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="81dp"
-        android:src="@drawable/recreationalsearies" />
-
-    <ImageView
-        android:layout_width="229dp"
-        android:layout_height="65dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="81dp"
-        android:src="@drawable/recreationalsearies" />
     <TextView
         android:id="@+id/label1"
         android:layout_width="148dp"

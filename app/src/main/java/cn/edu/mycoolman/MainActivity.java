@@ -3,8 +3,11 @@ package cn.edu.mycoolman;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,10 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
+import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, BleNotifyResponse {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, BleNotifyResponse, BleWriteResponse {
     private MybluetoothClient mClient;
     private String MAC;
     private UUID service;
@@ -49,11 +53,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private byte bytepass1;
     private byte bytepass2;
     private byte bytepass3;
+    private String a, b, c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //  getSupportActionBar().hide(); //隐藏状态栏
+        initBluetooth();
+        initController();
+        getPassworld();
+
+
+    }
+
+    //初始化蓝牙
+    private void initBluetooth() {
+        mClient = MybluetoothClient.getInstance(getApplicationContext());
+        Intent intent = getIntent();
+        if (intent != null) {
+            MAC = intent.getStringExtra("mac");
+            service = (UUID) intent.getSerializableExtra("service");
+            character = (UUID) intent.getSerializableExtra("character");
+        }
+        mClient.notify(MAC, service, character, this);
+        dataRead = new DataRead();
+    }
+
+    //初始化控件
+    private void initController() {
         lbmode = findViewById(R.id.lbmode);
         img = findViewById(R.id.img);
         label1 = findViewById(R.id.label1);
@@ -84,22 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btturbo = findViewById(R.id.btturbo);
         btturbo.setOnClickListener(this);
 
-        mClient = MybluetoothClient.getInstance(getApplicationContext());
-        Intent intent = getIntent();
-        if (intent != null) {
-            MAC = intent.getStringExtra("mac");
-            service = (UUID) intent.getSerializableExtra("service");
-            character = (UUID) intent.getSerializableExtra("character");
-        }
-        mClient.notify(MAC, service, character, this);
-        dataRead = new DataRead();
-
         //j进入主页面
+        lbmode.setVisibility(View.INVISIBLE);
         label1.setVisibility(View.VISIBLE);
         label2.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
         lbselect.setVisibility(View.INVISIBLE);
-        lbmode.setVisibility(View.INVISIBLE);
         lbcurrent.setVisibility(View.INVISIBLE);
         lbsetting.setVisibility(View.INVISIBLE);
         btadd.setVisibility(View.INVISIBLE);
@@ -111,18 +129,167 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btoff.setVisibility(View.INVISIBLE);
     }
 
+    //获取密码
+    private void getPassworld() {
+        SharedPreferences sharePref = getSharedPreferences("myfile", Context.MODE_PRIVATE);
+        passstr = sharePref.getString("password", "");
+        try {
+            a = passstr.substring(0, 1);
+            b = passstr.substring(1, 2);
+            c = passstr.substring(2, 3);
+        } catch (Exception e) {
+            Log.v("password", "get failed");
+        }
+    }
+
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btpower:
+                setPower();
+                break;
+            case R.id.bttemp:
+                setTemp();
+                break;
+            case R.id.btbattery:
+                setBattery();
+                break;
+            case R.id.btturbo:
+                setTurbo();
+                break;
+        }
+    }
 
+    private void setPower() {
+        lbmode.setVisibility(View.INVISIBLE);
+        label1.setVisibility(View.VISIBLE);
+        label2.setVisibility(View.VISIBLE);
+        img.setVisibility(View.VISIBLE);
+        lbselect.setVisibility(View.INVISIBLE);
+        lbcurrent.setVisibility(View.INVISIBLE);
+        lbsetting.setVisibility(View.INVISIBLE);
+        btadd.setVisibility(View.INVISIBLE);
+        btdrop.setVisibility(View.INVISIBLE);
+        bthigh.setVisibility(View.INVISIBLE);
+        btmedium.setVisibility(View.INVISIBLE);
+        btlow.setVisibility(View.INVISIBLE);
+        bton.setVisibility(View.INVISIBLE);
+        btoff.setVisibility(View.INVISIBLE);
+
+        btpower.setBackground(getDrawable(R.drawable.poweron));
+        bttemp.setBackground(getDrawable(R.drawable.tempoff));
+        btbattery.setBackground(getDrawable(R.drawable.batteryoff));
+        btturbo.setBackground(getDrawable(R.drawable.turbooff));
+
+        byte powerstatus = dataRead.getPower();
+        if (powerstatus == 0x00) {
+            powerstatus = 0x01;
+        } else {
+            powerstatus = 0x00;
+        }
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x02;
+        write[2] = powerstatus;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
+
+    }
+
+    private void setTemp() {
+        lbmode.setVisibility(View.VISIBLE);
+        label1.setVisibility(View.INVISIBLE);
+        label2.setVisibility(View.INVISIBLE);
+        img.setVisibility(View.INVISIBLE);
+        lbselect.setVisibility(View.VISIBLE);
+        lbcurrent.setVisibility(View.VISIBLE);
+        lbsetting.setVisibility(View.VISIBLE);
+        btadd.setVisibility(View.VISIBLE);
+        btdrop.setVisibility(View.VISIBLE);
+        bthigh.setVisibility(View.INVISIBLE);
+        btmedium.setVisibility(View.INVISIBLE);
+        btlow.setVisibility(View.INVISIBLE);
+        bton.setVisibility(View.INVISIBLE);
+        btoff.setVisibility(View.INVISIBLE);
+
+        btpower.setBackground(getDrawable(R.drawable.poweroff));
+        bttemp.setBackground(getDrawable(R.drawable.tempon));
+        btbattery.setBackground(getDrawable(R.drawable.batteryoff));
+        btturbo.setBackground(getDrawable(R.drawable.turbooff));
+        lbmode.setText("Current Temperature");
+    }
+
+    private void setBattery() {
+        lbmode.setVisibility(View.VISIBLE);
+        label1.setVisibility(View.INVISIBLE);
+        label2.setVisibility(View.INVISIBLE);
+        img.setVisibility(View.INVISIBLE);
+        lbselect.setVisibility(View.INVISIBLE);
+        lbcurrent.setVisibility(View.INVISIBLE);
+        lbsetting.setVisibility(View.INVISIBLE);
+        btadd.setVisibility(View.INVISIBLE);
+        btdrop.setVisibility(View.INVISIBLE);
+        bthigh.setVisibility(View.VISIBLE);
+        btmedium.setVisibility(View.VISIBLE);
+        btlow.setVisibility(View.VISIBLE);
+        bton.setVisibility(View.INVISIBLE);
+        btoff.setVisibility(View.INVISIBLE);
+
+        btpower.setBackground(getDrawable(R.drawable.poweroff));
+        bttemp.setBackground(getDrawable(R.drawable.tempoff));
+        btbattery.setBackground(getDrawable(R.drawable.batteryon));
+        btturbo.setBackground(getDrawable(R.drawable.turbooff));
+        lbmode.setText("Battery Protection");
+
+    }
+
+    private void setTurbo() {
+        lbmode.setVisibility(View.VISIBLE);
+        label1.setVisibility(View.INVISIBLE);
+        label2.setVisibility(View.INVISIBLE);
+        img.setVisibility(View.INVISIBLE);
+        lbselect.setVisibility(View.INVISIBLE);
+        lbcurrent.setVisibility(View.INVISIBLE);
+        lbsetting.setVisibility(View.INVISIBLE);
+        btadd.setVisibility(View.INVISIBLE);
+        btdrop.setVisibility(View.INVISIBLE);
+        bthigh.setVisibility(View.INVISIBLE);
+        btmedium.setVisibility(View.INVISIBLE);
+        btlow.setVisibility(View.INVISIBLE);
+        bton.setVisibility(View.VISIBLE);
+        btoff.setVisibility(View.VISIBLE);
+
+        btpower.setBackground(getDrawable(R.drawable.poweroff));
+        bttemp.setBackground(getDrawable(R.drawable.tempoff));
+        btbattery.setBackground(getDrawable(R.drawable.batteryoff));
+        btturbo.setBackground(getDrawable(R.drawable.turboon));
+        lbmode.setText("Turbo Mode");
     }
 
     @Override
     public void onNotify(UUID service, UUID character, byte[] value) {
-
+        updateStatus(value);
     }
 
     @Override
     public void onResponse(int code) {
 
     }
+
+
+    private void updateStatus(byte[] data) {
+        Log.v("write", "successfully");
+        if (data.length == 22) {
+            dataRead.setData(data);
+        } else {
+            return;
+        }
+    }
+
 }

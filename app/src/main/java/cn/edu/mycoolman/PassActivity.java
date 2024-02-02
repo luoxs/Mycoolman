@@ -3,7 +3,9 @@ package cn.edu.mycoolman;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -87,12 +89,21 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             if (dataRead.getGc() == 0) {
                 Log.v("password", "wrong");
             } else {
+                try {
+                    SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPre.edit();
+                    editor.putString("password", passstr);
+                    editor.apply();
+                } catch (Exception e) {
+                    Log.v("password", "saved worong!");
+                }
                 Intent intent = new Intent(PassActivity.this, MainActivity.class);
                 // intent.putExtra("devicename",arrayList.get(i));
                 intent.putExtra("mac", MAC);
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
                 startActivity(intent);
+
             }
         }
     }
