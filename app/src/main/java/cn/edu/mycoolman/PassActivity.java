@@ -1,9 +1,5 @@
 package cn.edu.mycoolman;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,13 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.inuker.bluetooth.library.BluetoothClient;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 import com.inuker.bluetooth.library.model.BleGattProfile;
-import com.inuker.bluetooth.library.search.SearchRequest;
 
 import java.util.UUID;
 
@@ -97,12 +93,12 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             } else {
                 try {
                     Log.v("password", "saved!");
-                    // SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
+                    //  SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
                     //SharedPreferences.Editor editor = sharedPre.edit();
                     // editor.putString(MAC, passstr);
                     // editor.apply();
 
-                    SharedPreferences.Editor editor = getSharedPreferences("datafile", MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = PassActivity.this.getSharedPreferences("datafile", MODE_PRIVATE).edit();
                     editor.putString(MAC, passstr);
                     editor.commit();
 
@@ -111,10 +107,11 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
                 }
                 Intent intent = new Intent(PassActivity.this, MainActivity.class);
                 // intent.putExtra("devicename",arrayList.get(i));
+                mClient = null;
                 intent.putExtra("mac", MAC);
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
-                mClient = null;
+
                 startActivity(intent);
 
             }

@@ -3,20 +3,12 @@ package cn.edu.mycoolman;
 import static com.inuker.bluetooth.library.Code.REQUEST_FAILED;
 import static com.inuker.bluetooth.library.Code.REQUEST_SUCCESS;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -29,11 +21,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.inuker.bluetooth.library.BluetoothClient;
-import com.inuker.bluetooth.library.beacon.Beacon;
 import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
-import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 import com.inuker.bluetooth.library.model.BleGattCharacter;
 import com.inuker.bluetooth.library.model.BleGattProfile;
@@ -41,31 +35,26 @@ import com.inuker.bluetooth.library.model.BleGattService;
 import com.inuker.bluetooth.library.search.SearchRequest;
 import com.inuker.bluetooth.library.search.SearchResult;
 import com.inuker.bluetooth.library.search.response.SearchResponse;
-import com.inuker.bluetooth.library.utils.BluetoothLog;
-
-import cn.edu.mycoolman.MybluetoothClient;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class ListDevice extends AppCompatActivity implements BleWriteResponse {
+    private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
+    private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
     private ArrayList<String> arrayList;
     private ArrayList<String> arrayMAC;
     private BluetoothClient mClient;
     private ArrayAdapter<String> adapter;
     private Button btcancel;
     private String myDeviceName;
-
     private String MAC;
     private UUID service;
     private UUID character;
     private ProgressDialog progressDialog;
     private String passstr;
     private DataRead dataRead;
-    private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
-    private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +128,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mClient.stopSearch();
-                progressDialog = ProgressDialog.show(ListDevice.this,"Connect","Connect device...");
+                progressDialog = ProgressDialog.show(ListDevice.this, "Connect", "Connect device...");
                 BleConnectOptions options = new BleConnectOptions.Builder()
                         .setConnectRetry(3)   // 连接如果失败重试3次
                         .setConnectTimeout(30000)   // 连接超时30s
@@ -148,7 +137,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                         .setServiceDiscoverTimeout(2000)  // 发现服务超时20s
                         .build();
 
-                myDeviceName =  arrayList.get(i);
+                myDeviceName = arrayList.get(i);
                 if (myDeviceName.startsWith("CCP15R") || myDeviceName.startsWith("CC20RP")) {
                     mClient.connect(arrayMAC.get(i), options, new BleConnectResponse() {
                         @Override
@@ -162,12 +151,11 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
 
                                 List<BleGattService> listServices = profile.getServices();
                                 if (listServices.size() > 0) {
-                                    service = listServices.get(2).getUUID();
+                                    service = listServices.get(1).getUUID();
                                     List<BleGattCharacter> listCharacters = listServices.get(2).getCharacters();
                                     if (listCharacters.size() > 0) {
                                         character = listCharacters.get(0).getUuid();
                                         progressDialog.dismiss();
-
                                         checkpass(arrayMAC.get(i));
                                     }
                                 }
@@ -197,8 +185,8 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
     private void checkpass(String mac) {
         try {
             SharedPreferences sharepre = getSharedPreferences("datafile", Context.MODE_PRIVATE);
-            String MacStr = sharepre.getString(MAC, "");
-            if (MacStr != null) {
+            String MacStr = sharepre.getString(mac, "");
+            if (MacStr != "") {
                 Intent intent = new Intent(ListDevice.this, MainActivity.class);
                 // intent.putExtra("devicename",arrayList.get(i));
                 intent.putExtra("mac", mac);
@@ -221,8 +209,6 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
 
 
     }
-
-
 
 
     //对广播反应

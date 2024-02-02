@@ -1,19 +1,17 @@
 package cn.edu.mycoolman;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
@@ -59,29 +57,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private byte bytepass3;
     private String a, b, c;
 
+
     private ImageButton btsetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mClient = MybluetoothClient.getInstance(getApplicationContext());
+        dataRead = new DataRead();
         //  getSupportActionBar().hide(); //隐藏状态栏
         initController();
+
         initBluetooth();
         getPassworld();
-
-
     }
 
     //初始化蓝牙
     private void initBluetooth() {
-        mClient = MybluetoothClient.getInstance(getApplicationContext());
-        dataRead = new DataRead();
+
         Intent intent = getIntent();
         if (intent != null) {
             MAC = intent.getStringExtra("mac");
             service = (UUID) intent.getSerializableExtra("service");
             character = (UUID) intent.getSerializableExtra("character");
+
         }
         mClient.notify(MAC, service, character, this);
 
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //获取密码
     private void getPassworld() {
-        SharedPreferences sharePref = getSharedPreferences("datafile", Context.MODE_PRIVATE);
+        SharedPreferences sharePref = MainActivity.this.getSharedPreferences("datafile", Context.MODE_PRIVATE);
         passstr = sharePref.getString(MAC, "");
         try {
             a = passstr.substring(0, 1);

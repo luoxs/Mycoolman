@@ -2,8 +2,10 @@ package cn.edu.mycoolman;
 
 public class utilCRC {
     static final String HEXES = "0123456789ABCDEF";
+
     /**
      * crc16 for modbus
+     *
      * @param buf buffer to be crc
      * @param len buffer length
      * @return crc result word
@@ -26,16 +28,18 @@ public class utilCRC {
     }
 
     private static byte uniteBytes(byte src0, byte src1) {
-        byte _b0 = Byte.decode("0x" + new String(new byte[] { src0 }))
+        byte _b0 = Byte.decode("0x" + new String(new byte[]{src0}))
                 .byteValue();
         _b0 = (byte) (_b0 << 4);
-        byte _b1 = Byte.decode("0x" + new String(new byte[] { src1 }))
+        byte _b1 = Byte.decode("0x" + new String(new byte[]{src1}))
                 .byteValue();
         byte ret = (byte) (_b0 ^ _b1);
         return ret;
     }
+
     /**
      * convert string of hex to buffer
+     *
      * @param src string to be convert
      * @return buffer
      */
@@ -48,8 +52,10 @@ public class utilCRC {
         }
         return ret;
     }
+
     /**
      * convert string to buffer and append the crc check word to the end of buffer
+     *
      * @param toSend string to be convert
      * @return buffer with crc word, high byte if after low byte according the modbus
      */
@@ -60,8 +66,10 @@ public class utilCRC {
         bb[bb.length - 1] = (byte) ((0xff00 & ri) >> 8);
         return bb;
     }
+
     /**
      * print buffer to hex string
+     *
      * @param raw
      * @return
      */
@@ -76,17 +84,15 @@ public class utilCRC {
         }
         return hex.toString();
     }
+
     /**
-     *
      * @param bb buffer to check
      * @return check result
      */
-    public static boolean checkBuf(byte[] bb){
-        int ri = alex_crc16(bb, bb.length-2);
-        if(bb[bb.length-1]==(byte)(ri&0xff)
-                && bb[bb.length-2]==(byte) ((0xff00 & ri) >> 8))
-            return true;
-        return false;
+    public static boolean checkBuf(byte[] bb) {
+        int ri = alex_crc16(bb, bb.length - 2);
+        return bb[bb.length - 1] == (byte) (ri & 0xff)
+                && bb[bb.length - 2] == (byte) ((0xff00 & ri) >> 8);
     }
 
     /*
