@@ -116,6 +116,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btturbo = findViewById(R.id.btturbo);
         btturbo.setOnClickListener(this);
         btsetting = findViewById(R.id.btsetting);
+        btsetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //j进入主页面
         lbmode.setVisibility(View.INVISIBLE);
@@ -133,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bton.setVisibility(View.INVISIBLE);
         btoff.setVisibility(View.INVISIBLE);
     }
+
 
     //获取密码
     private void getPassworld() {
