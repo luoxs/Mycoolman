@@ -63,6 +63,8 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
     private ProgressDialog progressDialog;
     private String passstr;
     private DataRead dataRead;
+    private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
+    private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
 
 
     @Override
@@ -153,6 +155,12 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                         public void onResponse(int code, BleGattProfile profile) {
                             if (code == REQUEST_SUCCESS) {
                                 Log.d("connect", "---Connected successfully!---");
+                                service = service4UUID;
+                                character = charAUUID;
+                                checkpass(arrayMAC.get(i));
+
+
+                                /*
                                 List<BleGattService> listServices = profile.getServices();
                                 if (listServices.size() > 0) {
                                     service = listServices.get(2).getUUID();
@@ -163,7 +171,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
 
                                         checkpass(arrayMAC.get(i));
                                     }
-                                }
+                                }*/
                                 progressDialog.dismiss();
                             } else if (code == REQUEST_FAILED) {
                                 progressDialog.dismiss();
@@ -197,6 +205,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                 intent.putExtra("mac", mac);
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
+                // mClient = null;
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(ListDevice.this, PassActivity.class);
@@ -204,6 +213,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                 intent.putExtra("mac", mac);
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
+                //    mClient = null;
                 startActivity(intent);
             }
         } catch (Exception e) {

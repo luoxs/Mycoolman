@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private byte bytepass3;
     private String a, b, c;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initBluetooth();
         initController();
         getPassworld();
-
-
     }
 
     //初始化蓝牙
@@ -198,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         write[6] = (byte) (0xFF & x);
         write[5] = (byte) (0xFF & (x >> 8));
         write[7] = 0x55;
-        mClient.write(MAC, service, character, write, this);
+        //    mClient.write(MAC, service, character, write, this);
 
     }
 
@@ -246,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btbattery.setBackground(getDrawable(R.drawable.batteryon));
         btturbo.setBackground(getDrawable(R.drawable.turbooff));
         lbmode.setText("Battery Protection");
-
     }
 
     private void setTurbo() {

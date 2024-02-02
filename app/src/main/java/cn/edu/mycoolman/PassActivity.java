@@ -79,7 +79,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             write[6] = (byte) (0xFF & x);
             write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
-            mClient.writeNoRsp(MAC, service, character, write, this);
+            mClient.write(MAC, service, character, write, this);
         }
     }
 
@@ -92,9 +92,10 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
                 Log.v("password", "wrong");
             } else {
                 try {
+                    Log.v("password", "saved!");
                     SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPre.edit();
-                    editor.putString("mackey", passstr);
+                    editor.putString(MAC, passstr);
                     editor.apply();
                 } catch (Exception e) {
                     Log.v("password", "saved worong!");
