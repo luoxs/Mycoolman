@@ -14,8 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
+import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
+import com.inuker.bluetooth.library.model.BleGattProfile;
 
 import java.util.UUID;
 
@@ -197,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         write[6] = (byte) (0xFF & x);
         write[5] = (byte) (0xFF & (x >> 8));
         write[7] = 0x55;
-        //    mClient.write(MAC, service, character, write, this);
+        mClient.write(MAC, service, character, write, this);
 
     }
 
@@ -277,6 +280,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onResponse(int code) {
+        Log.v("失败", "断开连接");
+        BleConnectOptions options = new BleConnectOptions.Builder()
+                .setConnectRetry(3)   // 连接如果失败重试3次
+                .setConnectTimeout(30000)   // 连接超时30s
+                .setServiceDiscoverRetry(3)  // 发现服务如果失败重试3次
+                .setServiceDiscoverTimeout(20000)  //
+                .setServiceDiscoverTimeout(2000)  // 发现服务超时20s
+                .build();
+        mClient.connect(MAC, options, new BleConnectResponse() {
+            @Override
+            public void onResponse(int code, BleGattProfile data) {
+                if (code != -1) {
+                    Log.v("重连", "重新连接成功！");
+                }
+            }
+        });
 
     }
 

@@ -17,8 +17,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.inuker.bluetooth.library.BluetoothClient;
+import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
+import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
+import com.inuker.bluetooth.library.model.BleGattProfile;
 import com.inuker.bluetooth.library.search.SearchRequest;
 
 import java.util.UUID;
@@ -54,6 +57,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
         //    btcancel.setOnClickListener(this);
 
         mClient = MybluetoothClient.getInstance(getApplicationContext());
+        dataRead = new DataRead();
         Intent intent = getIntent();
         if (intent != null) {
             MAC = intent.getStringExtra("mac");
@@ -61,7 +65,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             character = (UUID) intent.getSerializableExtra("character");
         }
         mClient.notify(MAC, service, character, this);
-        dataRead = new DataRead();
+
         getPassWord();
     }
 
@@ -118,6 +122,22 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
 
     @Override
     public void onResponse(int code) {
+        Log.v("失败", "断开连接");
+        BleConnectOptions options = new BleConnectOptions.Builder()
+                .setConnectRetry(3)   // 连接如果失败重试3次
+                .setConnectTimeout(30000)   // 连接超时30s
+                .setServiceDiscoverRetry(3)  // 发现服务如果失败重试3次
+                .setServiceDiscoverTimeout(20000)  //
+                .setServiceDiscoverTimeout(2000)  // 发现服务超时20s
+                .build();
+        mClient.connect(MAC, options, new BleConnectResponse() {
+            @Override
+            public void onResponse(int code, BleGattProfile data) {
+                if (code != -1) {
+                    Log.v("重连", "重新连接成功！");
+                }
+            }
+        });
 
     }
 
