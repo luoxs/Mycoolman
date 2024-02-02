@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -443,6 +444,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (data.length == 22) {
             dataRead.setData(data);
             Log.v("set", "data----");
+            if (dataRead.getBattery() == 0x02) {
+                bthigh.setBackground(getDrawable(R.drawable.highon));
+                btmedium.setBackground(getDrawable(R.drawable.mediumoff));
+                btlow.setBackground(getDrawable(R.drawable.lowoff));
+            } else if (dataRead.getBattery() == 0x01) {
+                bthigh.setBackground(getDrawable(R.drawable.highoff));
+                btmedium.setBackground(getDrawable(R.drawable.meidiumon));
+                btlow.setBackground(getDrawable(R.drawable.lowoff));
+            } else {
+                bthigh.setBackground(getDrawable(R.drawable.highoff));
+                btmedium.setBackground(getDrawable(R.drawable.mediumoff));
+                btlow.setBackground(getDrawable(R.drawable.lowon));
+            }
+
+            if (dataRead.getTurbo() == 0x01) {
+                bton.setBackground(getDrawable(R.drawable.onon));
+                btoff.setBackground(getDrawable(R.drawable.offoff));
+            } else {
+                bton.setBackground(getDrawable(R.drawable.onoff));
+                btoff.setBackground(getDrawable(R.drawable.offon));
+            }
+
+            if (dataRead.getUnit() == 0x01) {
+                if (dataRead.getTempReal() > 128) {
+                    lbcurrent.setText((dataRead.getTempReal() - 128) + "°C");
+                } else {
+                    lbcurrent.setText(dataRead.getTempReal() + "°C");
+                }
+            }
 
 
         } else {
