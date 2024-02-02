@@ -424,7 +424,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-
     }
 
 
@@ -433,6 +432,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (data.length == 22) {
             dataRead.setData(data);
             Log.v("set", "data----");
+
+
         } else {
             return;
         }
