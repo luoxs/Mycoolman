@@ -107,23 +107,22 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
             public void onDeviceFounded(SearchResult device) {
                 // Beacon beacon = new Beacon(device.scanRecord);
                 // BluetoothLog.v(String.format("----beacon for %s\n%s", device.getAddress(), beacon.toString()));
-                if ((!arrayList.contains(device.getName()) && (device.getName().startsWith("CCP15R") || device.getName().startsWith("CCP20R")))) {
-                    arrayList.add(device.getName());
-                    arrayMAC.add(device.getAddress());
-                    lstv.setAdapter(adapter);
+                if ((device.getName().startsWith("CCP15R") || device.getName().startsWith("CCP20R"))) {
+                    if (!arrayList.contains(device.getName())) {
+                        arrayList.add(device.getName());
+                        arrayMAC.add(device.getAddress());
+                        lstv.setAdapter(adapter);
+                    }
                 }
             }
 
             @Override
             public void onSearchStopped() {
                 Log.v("over", "-------scanstopped");
-                for (String name :
-                        arrayList) {
+                for (String name : arrayList) {
                     Log.v("----name---", name);
                 }
-
-                for (String mac :
-                        arrayMAC) {
+                for (String mac : arrayMAC) {
                     Log.v("----mac---", mac);
                 }
             }
@@ -143,7 +142,8 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                         .setConnectRetry(3)   // 连接如果失败重试3次
                         .setConnectTimeout(30000)   // 连接超时30s
                         .setServiceDiscoverRetry(3)  // 发现服务如果失败重试3次
-                        .setServiceDiscoverTimeout(20000)  // 发现服务超时20s
+                        .setServiceDiscoverTimeout(20000)  //
+                        .setServiceDiscoverTimeout(2000)  // 发现服务超时20s
                         .build();
 
                 myDeviceName =  arrayList.get(i);
@@ -160,6 +160,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                                     if (listCharacters.size() > 0) {
                                         character = listCharacters.get(0).getUuid();
                                         progressDialog.dismiss();
+
                                         checkpass(arrayMAC.get(i));
                                     }
                                 }
