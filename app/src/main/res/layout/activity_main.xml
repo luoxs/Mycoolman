@@ -19,32 +19,32 @@
         android:layout_height="18dp"
         android:layout_marginLeft="72dp"
         android:layout_marginTop="30dp"
-        android:scaleType="fitXY"
-        android:background="@drawable/type" />
+        android:background="@drawable/type"
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:id="@+id/btcack"
-        android:layout_width="18dp"
+        android:layout_width="9dp"
         android:layout_height="18dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="29dp"
-        android:src="@drawable/back" />
+        android:background="@drawable/back" />
 
     <ImageView
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginLeft="195dp"
         android:layout_marginTop="29dp"
-        android:src="@drawable/signal" />
+        android:background="@drawable/signal" />
 
     <ImageButton
         android:id="@+id/btsetting"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
-        android:scaleType="fitXY"
-        android:background="@drawable/setting" />
+        android:layout_marginLeft="221dp"
+        android:background="@drawable/setting"
+        android:scaleType="fitXY" />
 
 
     <ImageView
