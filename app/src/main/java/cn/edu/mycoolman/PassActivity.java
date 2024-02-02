@@ -97,10 +97,15 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             } else {
                 try {
                     Log.v("password", "saved!");
-                    SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPre.edit();
+                    // SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
+                    //SharedPreferences.Editor editor = sharedPre.edit();
+                    // editor.putString(MAC, passstr);
+                    // editor.apply();
+
+                    SharedPreferences.Editor editor = getSharedPreferences("datafile", MODE_PRIVATE).edit();
                     editor.putString(MAC, passstr);
-                    editor.apply();
+                    editor.commit();
+
                 } catch (Exception e) {
                     Log.v("password", "saved worong!");
                 }

@@ -196,9 +196,9 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
     //看连接的设备是否有保存过的密码
     private void checkpass(String mac) {
         try {
-            SharedPreferences sharepre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
-            String MacStr = sharepre.getString("mackey", "");
-            if (MacStr.equals(mac)) {
+            SharedPreferences sharepre = getSharedPreferences("datafile", Context.MODE_PRIVATE);
+            String MacStr = sharepre.getString(MAC, "");
+            if (MacStr != null) {
                 Intent intent = new Intent(ListDevice.this, MainActivity.class);
                 // intent.putExtra("devicename",arrayList.get(i));
                 intent.putExtra("mac", mac);

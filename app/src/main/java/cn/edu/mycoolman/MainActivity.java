@@ -66,9 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //  getSupportActionBar().hide(); //隐藏状态栏
-        initBluetooth();
         initController();
+        initBluetooth();
         getPassworld();
+
+
     }
 
     //初始化蓝牙
@@ -146,8 +148,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //获取密码
     private void getPassworld() {
-        SharedPreferences sharePref = getSharedPreferences("myfile", Context.MODE_PRIVATE);
-        passstr = sharePref.getString("password", "");
+        SharedPreferences sharePref = getSharedPreferences("datafile", Context.MODE_PRIVATE);
+        passstr = sharePref.getString(MAC, "");
         try {
             a = passstr.substring(0, 1);
             b = passstr.substring(1, 2);

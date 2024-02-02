@@ -112,10 +112,10 @@
         android:layout_height="19dp"
         android:layout_marginLeft="167dp"
         android:layout_marginTop="129dp"
-        android:textColor="@color/white"
         android:background="@color/r142"
-        android:textSize="12sp"
-        android:text="°C >" />
+        android:text="°C >"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
     <Button
         android:layout_width="70dp"
