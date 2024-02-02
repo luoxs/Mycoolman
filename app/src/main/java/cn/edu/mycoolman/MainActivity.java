@@ -166,6 +166,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btdrop:
                 setDrop();
                 break;
+            case R.id.bthigh:
+                setHigh();
+                break;
+            case R.id.btmedium:
+                setMedium();
+                break;
+            case R.id.btlow:
+                setLow();
+                break;
+            case R.id.bton:
+                setOn();
+                break;
+            case R.id.btoff:
+                setOff();
+                break;
         }
     }
 
@@ -310,6 +325,81 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mClient.write(MAC, service, character, write, this);
     }
 
+    private void setHigh() {
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x07;
+        write[2] = 0x02;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
+    }
+
+    private void setMedium() {
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x07;
+        write[2] = 0x01;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
+    }
+
+    private void setLow() {
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x07;
+        write[2] = 0x00;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
+    }
+
+    private void setOn() {
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x05;
+        write[2] = 0x01;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
+
+    }
+
+    private void setOff() {
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x05;
+        write[2] = 0x00;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
+    }
 
     @Override
     public void onNotify(UUID service, UUID character, byte[] value) {
@@ -341,7 +431,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateStatus(byte[] data) {
         Log.v("write", "successfully");
         if (data.length == 22) {
-            // dataRead.setData(data);
+            dataRead.setData(data);
+            Log.v("set", "data----");
         } else {
             return;
         }
