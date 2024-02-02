@@ -7,6 +7,7 @@
     android:background="@color/r142"
     tools:context=".HomeActivity">
 
+
     <View
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -15,20 +16,44 @@
         android:background="@color/r105" />
 
     <ImageView
+        android:layout_width="112dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/type"
+        android:scaleType="fitXY" />
+
+    <ImageButton
+        android:id="@+id/btcack"
+        android:layout_width="9dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/back" />
+
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/signal" />
+
+    <ImageButton
+        android:id="@+id/btsetting"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="221dp"
+        android:background="@drawable/setting"
+        android:scaleType="fitXY" />
+
+    <ImageView
         android:layout_width="229dp"
         android:layout_height="65dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="81dp"
         android:background="@drawable/recreationalsearies" />
 
-
-    <ImageButton
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_weight="10"
-        android:scaleType="fitEnd"
-        android:background="@drawable/mycoolman" />
 
     <TextView
         android:layout_width="172dp"

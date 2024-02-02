@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.inuker.bluetooth.library.BluetoothClient;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
@@ -27,7 +28,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
     private UUID service;
     private UUID character;
     private MybluetoothClient mClient;
-    private ProgressDialog progressDialog;
+    private ProgressBar progressDialog;
     private String passstr;
     private DataRead dataRead;
     private EditText pass1, pass2, pass3;
@@ -41,6 +42,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
         pass1 = findViewById(R.id.password1);
         pass2 = findViewById(R.id.password2);
         pass3 = findViewById(R.id.password3);
+        progressDialog = findViewById(R.id.prgbar);
         //   btcancel = findViewById(R.id.btcancel);
 
         pass1.setOnTouchListener(this);
