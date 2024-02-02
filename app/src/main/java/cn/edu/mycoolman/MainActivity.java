@@ -468,12 +468,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (dataRead.getUnit() == 0x01) {
                 if (dataRead.getTempReal() > 128) {
-                    lbcurrent.setText((dataRead.getTempReal() - 128) + "°C");
+                    lbcurrent.setText((dataRead.getTempReal() - 256) + "°C");
                 } else {
                     lbcurrent.setText(dataRead.getTempReal() + "°C");
                 }
+            } else {
+                if (dataRead.getTempReal() > 128) {
+                    lbcurrent.setText(Math.round((dataRead.getTempReal() - 256) * 1.8 + 32) + "°F");
+                } else {
+                    lbcurrent.setText(Math.round(dataRead.getTempReal() * 1.8 + 32) + "°F");
+                }
             }
 
+            if (dataRead.getUnit() == 0x01) {
+                if (dataRead.getTempcool() > 128) {
+                    lbsetting.setText((dataRead.getTempcool() - 256) + "°C");
+                } else {
+                    lbsetting.setText(dataRead.getTempcool() + "°C");
+                }
+            } else {
+                if (dataRead.getTempReal() > 128) {
+                    lbsetting.setText(Math.round((dataRead.getTempcool() - 256) * 1.8 + 32) + "°F");
+                } else {
+                    lbsetting.setText(Math.round(dataRead.getTempcool() * 1.8 + 32) + "°F");
+                }
+            }
 
         } else {
             return;
