@@ -109,6 +109,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
                 intent.putExtra("mac", MAC);
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
+                mClient = null;
                 startActivity(intent);
 
             }
