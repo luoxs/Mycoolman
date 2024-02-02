@@ -155,12 +155,11 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                         public void onResponse(int code, BleGattProfile profile) {
                             if (code == REQUEST_SUCCESS) {
                                 Log.d("connect", "---Connected successfully!---");
-                                service = service4UUID;
-                                character = charAUUID;
-                                checkpass(arrayMAC.get(i));
+//                                service = service4UUID;
+//                                character = charAUUID;
+//                                checkpass(arrayMAC.get(i));
 
 
-                                /*
                                 List<BleGattService> listServices = profile.getServices();
                                 if (listServices.size() > 0) {
                                     service = listServices.get(2).getUUID();
@@ -171,7 +170,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
 
                                         checkpass(arrayMAC.get(i));
                                     }
-                                }*/
+                                }
                                 progressDialog.dismiss();
                             } else if (code == REQUEST_FAILED) {
                                 progressDialog.dismiss();

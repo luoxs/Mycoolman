@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private byte bytepass3;
     private String a, b, c;
 
+    private ImageButton btsetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btbattery.setOnClickListener(this);
         btturbo = findViewById(R.id.btturbo);
         btturbo.setOnClickListener(this);
+        btsetting = findViewById(R.id.btsetting);
 
         //j进入主页面
         lbmode.setVisibility(View.INVISIBLE);
