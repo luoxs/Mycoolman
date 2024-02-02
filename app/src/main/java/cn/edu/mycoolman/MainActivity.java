@@ -493,7 +493,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     lbsetting.setText(Math.round(dataRead.getTempcool() * 1.8 + 32) + "°F");
                 }
             }
-
         } else {
             return;
         }
