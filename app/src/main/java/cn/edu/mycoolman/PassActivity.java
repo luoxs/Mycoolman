@@ -32,6 +32,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
     private DataRead dataRead;
     private EditText pass1, pass2, pass3;
     private Button btcancel;
+    private int texttimes = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,14 +178,18 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
 
     @Override
     public void afterTextChanged(Editable editable) {
-        if (pass1.getText().length() + pass2.getText().length() + pass3.getText().length() == 3) {
-            String a = pass1.getText().toString();
-            String b = pass2.getText().toString();
-            String c = pass3.getText().toString();
-            handlepass(a, b, c);
+        if (texttimes == 0) {
+            if (pass1.getText().length() + pass2.getText().length() + pass3.getText().length() == 3) {
+                String a = pass1.getText().toString();
+                String b = pass2.getText().toString();
+                String c = pass3.getText().toString();
+                handlepass(a, b, c);
+                texttimes++;
+            }
         }
     }
 
+    //使用获得的密码查询信息
     private void handlepass(String a, String b, String c) {
         passstr = a + b + c;
         try {

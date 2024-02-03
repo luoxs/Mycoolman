@@ -22,6 +22,8 @@ import com.inuker.bluetooth.library.model.BleGattProfile;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, BleNotifyResponse, BleWriteResponse {
+    private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
+    private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
     private MybluetoothClient mClient;
     private String MAC;
     private UUID service;
@@ -75,13 +77,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //初始化蓝牙
     private void initBluetooth() {
-
         Intent intent = getIntent();
         if (intent != null) {
             MAC = intent.getStringExtra("mac");
-            service = (UUID) intent.getSerializableExtra("service");
-            character = (UUID) intent.getSerializableExtra("character");
-
+            //  service = (UUID) intent.getSerializableExtra("service");
+            // character = (UUID) intent.getSerializableExtra("character");
+            service = service4UUID;
+            character = charAUUID;
         }
         mClient.notify(MAC, service, character, this);
 
@@ -123,7 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, SettingActivity.class);
+                // intent.setClass(MainActivity.this, SettingActivity.class);
+                intent.setClass(MainActivity.this, testActivity.class);
                 startActivity(intent);
             }
         });
@@ -144,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bton.setVisibility(View.INVISIBLE);
         btoff.setVisibility(View.INVISIBLE);
     }
-
 
     //获取密码
     private void getPassworld() {
@@ -422,6 +424,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onResponse(int code) {
+        /*
         Log.v("失败", "断开连接");
         BleConnectOptions options = new BleConnectOptions.Builder()
                 .setConnectRetry(3)   // 连接如果失败重试3次
@@ -437,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.v("重连", "重新连接成功！");
                 }
             }
-        });
+        });*/
     }
 
 
