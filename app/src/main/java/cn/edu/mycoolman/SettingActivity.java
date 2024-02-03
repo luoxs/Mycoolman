@@ -69,7 +69,6 @@ public class SettingActivity extends AppCompatActivity implements BleNotifyRespo
             character = (UUID) intent.getSerializableExtra("character");
         }
         mClient.notify(MAC, service, character, this);
-
     }
 
     private void getPassworld() {
