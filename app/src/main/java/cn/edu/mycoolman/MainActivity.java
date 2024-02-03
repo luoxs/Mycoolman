@@ -66,7 +66,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mClient = MybluetoothClient.getInstance(getApplicationContext());
+
         dataRead = new DataRead();
         //  getSupportActionBar().hide(); //隐藏状态栏
         initController();
@@ -78,14 +85,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //初始化蓝牙
     private void initBluetooth() {
         Intent intent = getIntent();
+
+        dataRead = new DataRead();
         if (intent != null) {
-            MAC = intent.getStringExtra("mac");
+            MAC = intent.getStringExtra("macstr");
             //  service = (UUID) intent.getSerializableExtra("service");
             // character = (UUID) intent.getSerializableExtra("character");
             service = service4UUID;
             character = charAUUID;
         }
-        mClient.notify(MAC, service, character, this);
+
 
     }
 
@@ -151,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //获取密码
     private void getPassworld() {
         SharedPreferences sharePref = MainActivity.this.getSharedPreferences("datafile", Context.MODE_PRIVATE);
+        MAC = sharePref.getString("device", "");
         passstr = sharePref.getString(MAC, "");
         try {
             a = passstr.substring(0, 1);
@@ -201,6 +211,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setPower() {
+        mClient.notify(MAC, service, character, this);
+
         lbmode.setVisibility(View.INVISIBLE);
         label1.setVisibility(View.VISIBLE);
         label2.setVisibility(View.VISIBLE);
@@ -243,6 +255,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setTemp() {
+        mClient.notify(MAC, service, character, this);
         lbmode.setVisibility(View.VISIBLE);
         label1.setVisibility(View.INVISIBLE);
         label2.setVisibility(View.INVISIBLE);
@@ -266,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setBattery() {
+        mClient.notify(MAC, service, character, this);
         lbmode.setVisibility(View.VISIBLE);
         label1.setVisibility(View.INVISIBLE);
         label2.setVisibility(View.INVISIBLE);
@@ -289,6 +303,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setTurbo() {
+        mClient.notify(MAC, service, character, this);
         lbmode.setVisibility(View.VISIBLE);
         label1.setVisibility(View.INVISIBLE);
         label2.setVisibility(View.INVISIBLE);

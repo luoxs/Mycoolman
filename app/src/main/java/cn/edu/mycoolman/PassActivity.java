@@ -17,12 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
+import com.inuker.bluetooth.library.connect.response.BleUnnotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 import com.inuker.bluetooth.library.model.BleGattProfile;
 
 import java.util.UUID;
 
-public class PassActivity extends AppCompatActivity implements BleNotifyResponse, BleWriteResponse, View.OnTouchListener, View.OnClickListener, TextWatcher {
+public class PassActivity extends AppCompatActivity implements BleNotifyResponse, BleUnnotifyResponse, BleWriteResponse, View.OnTouchListener, View.OnClickListener, TextWatcher {
     private String MAC;
     private UUID service;
     private UUID character;
@@ -62,8 +63,8 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             character = (UUID) intent.getSerializableExtra("character");
         }
         mClient.notify(MAC, service, character, this);
-
         getPassWord();
+
     }
 
     //显示密钥
@@ -92,6 +93,14 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             if (dataRead.getGc() == 0) {
                 Log.v("password", "wrong");
             } else {
+                mClient.unnotify(MAC, service, character, new BleUnnotifyResponse() {
+                    @Override
+                    public void onResponse(int code) {
+                        Log.v("unnotify", "------------here-----------");
+                    }
+                });
+
+
                 try {
                     Log.v("password", "saved!");
                     //  SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
@@ -100,8 +109,9 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
                     // editor.apply();
 
                     SharedPreferences.Editor editor = PassActivity.this.getSharedPreferences("datafile", MODE_PRIVATE).edit();
+                    editor.putString("device", MAC);
                     editor.putString(MAC, passstr);
-                    editor.commit();
+                    editor.apply();
 
                 } catch (Exception e) {
                     Log.v("password", "saved worong!");
@@ -112,6 +122,9 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
                 intent.putExtra("mac", MAC);
                 intent.putExtra("service", service);
                 intent.putExtra("character", character);
+
+
+                Log.v("-------奇怪", "---------------------哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈--------");
                 startActivity(intent);
             }
         }
@@ -207,4 +220,6 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             Log.v("password---", "out of range");
         }
     }
+
+
 }
