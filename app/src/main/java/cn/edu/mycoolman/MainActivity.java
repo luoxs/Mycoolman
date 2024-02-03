@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.putExtra("macstr", MAC);
                 // intent.setClass(MainActivity.this, SettingActivity.class);
                 intent.setClass(MainActivity.this, testActivity.class);
                 startActivity(intent);
