@@ -30,7 +30,6 @@
         android:layout_marginTop="29dp"
         android:background="@drawable/back" />
 
-
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/dbv_custom"
         android:layout_width="match_parent"
