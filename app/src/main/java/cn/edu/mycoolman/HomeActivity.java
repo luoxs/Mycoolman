@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -59,6 +60,22 @@ public class HomeActivity extends AppCompatActivity {
             if (scanResult != null && scanResult.getContents() != null) {
                 String result = scanResult.getContents();
                 Log.d("扫码返回: ", result);
+                if (result != null && result.length() >= 12) {
+                    String devicename = result.substring(result.length() - 12, result.length());
+                    if (devicename.startsWith("CCP15R") || devicename.startsWith("CCP20R")) {
+                        Intent qrintent = new Intent();
+                        qrintent.putExtra("device", devicename);
+                        qrintent.setClass(HomeActivity.this, HandeQR.class);
+                        startActivity(qrintent);
+                    }
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Wrong").setMessage("This is a wrong QR code!");
+                    // 获取AlertDialog
+                    AlertDialog dialog = builder.create();
+                    // 显示
+                    dialog.show();
+                }
                 // tvMsg.setText(result);
             }
         }

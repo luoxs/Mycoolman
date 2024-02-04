@@ -61,7 +61,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_device);
-        setContentView(R.layout.activity_list_device);
+
         ListView lstv = (ListView) findViewById(R.id.listView);
         arrayList = new ArrayList<String>();
         arrayMAC = new ArrayList<>();
