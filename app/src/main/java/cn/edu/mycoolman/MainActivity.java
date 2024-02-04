@@ -73,13 +73,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         mClient = MybluetoothClient.getInstance(getApplicationContext());
-
+        mClient.notify(MAC, service, character, this);
         dataRead = new DataRead();
         //  getSupportActionBar().hide(); //隐藏状态栏
         initController();
-
         initBluetooth();
         getPassworld();
+        initdata();
     }
 
     //初始化蓝牙
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         dataRead = new DataRead();
         if (intent != null) {
-            MAC = intent.getStringExtra("macstr");
+            MAC = intent.getStringExtra("device");
             //  service = (UUID) intent.getSerializableExtra("service");
             // character = (UUID) intent.getSerializableExtra("character");
             service = service4UUID;
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("macstr", MAC);
+                intent.putExtra("device", MAC);
                 // intent.setClass(MainActivity.this, SettingActivity.class);
                 intent.setClass(MainActivity.this, testActivity.class);
                 startActivity(intent);
@@ -325,6 +325,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btbattery.setBackground(getDrawable(R.drawable.batteryoff));
         btturbo.setBackground(getDrawable(R.drawable.turboon));
         lbmode.setText("Turbo Mode");
+    }
+
+    private void initdata() {
+        byte[] write = new byte[8];
+        write[0] = (byte) 0xAA;
+        write[1] = 0x01;
+        write[2] = 0x00;
+        write[3] = (byte) Integer.parseInt(a, 16);
+        write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+        byte[] bytin = {write[1], write[2], write[3], write[4]};
+        int x = utilCRC.alex_crc16(bytin, 4);
+        write[6] = (byte) (0xFF & x);
+        write[5] = (byte) (0xFF & (x >> 8));
+        write[7] = 0x55;
+        mClient.write(MAC, service, character, write, this);
     }
 
     private void setAdd() {

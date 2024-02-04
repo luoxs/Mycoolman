@@ -81,6 +81,9 @@ public class testActivity extends AppCompatActivity implements BleNotifyResponse
                         Log.v("unnoty", "successfully!");
                     }
                 });
+                Intent intent = new Intent();
+                intent.setClass(testActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -90,7 +93,7 @@ public class testActivity extends AppCompatActivity implements BleNotifyResponse
         //  dataRead = new DataRead();
         Intent intent = getIntent();
         if (intent != null) {
-            MAC = intent.getStringExtra("mac");
+            MAC = intent.getStringExtra("device");
         }
         mClient.notify(MAC, service, character, this);
     }
@@ -140,7 +143,7 @@ public class testActivity extends AppCompatActivity implements BleNotifyResponse
             if (dataRead.getUnit() == 0x01) {
                 btUnit.setText("°C >");
             } else {
-                btUnit.setText("°F");
+                btUnit.setText("°F >");
             }
 
         }

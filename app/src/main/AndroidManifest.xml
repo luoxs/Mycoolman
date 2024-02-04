@@ -31,9 +31,6 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
-            android:exported="false" />
-        <activity
             android:name=".PassActivity"
             android:exported="false" />
         <activity
