@@ -80,7 +80,7 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Users\snc\Desktop\temp\Mycoolman_air\icon512.png" />
-                                                <entry key="scalingPercent" value="54" />
+                                                <entry key="scalingPercent" value="44" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -108,11 +108,6 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
-                                    </map>
-                                  </option>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="previewDensity" value="HIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -276,11 +271,6 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
-                                    </map>
-                                  </option>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="previewDensity" value="HIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>

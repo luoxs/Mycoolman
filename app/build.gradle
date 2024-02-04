@@ -6,7 +6,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "cn.edu.mycoolman"
+        applicationId "cn.edu.mycoolman.recreational"
         minSdk 25
         targetSdk 28
         versionCode 1
