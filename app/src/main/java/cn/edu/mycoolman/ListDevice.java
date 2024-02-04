@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -181,6 +182,8 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
                 startActivity(intent);
             }
         });
+
+
     }
 
     //看连接的设备是否有保存过的密码
@@ -208,8 +211,6 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
         } catch (Exception e) {
             Log.v("data store errr", e.toString());
         }
-
-
     }
 
 
