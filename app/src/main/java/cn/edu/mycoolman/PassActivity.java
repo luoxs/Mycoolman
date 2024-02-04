@@ -92,7 +92,9 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             write[6] = (byte) (0xFF & x);
             write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
+            mClient.notify(MAC, service, character, this);
             mClient.write(MAC, service, character, write, this);
+
         }
     }
 
@@ -200,6 +202,15 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
 
     @Override
     public void afterTextChanged(Editable editable) {
+        if (pass2.hasFocus()) {
+            pass3.requestFocus();
+            pass3.requestFocusFromTouch();
+        }
+        if (pass1.hasFocus()) {
+            pass2.requestFocus();
+            pass2.requestFocusFromTouch();
+        }
+
         if (texttimes == 0) {
             if (pass1.getText().length() + pass2.getText().length() + pass3.getText().length() == 3) {
                 String a = pass1.getText().toString();
