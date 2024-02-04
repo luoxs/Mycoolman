@@ -35,7 +35,7 @@
         android:layout_height="18dp"
         android:layout_marginLeft="195dp"
         android:layout_marginTop="29dp"
-        android:background="@drawable/signal" />
+        android:background="@drawable/ble" />
 
     <ImageButton
         android:id="@+id/btsetting"

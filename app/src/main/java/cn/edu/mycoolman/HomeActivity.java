@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class HomeActivity extends AppCompatActivity {
     private ImageButton btscanqr;
@@ -60,8 +63,8 @@ public class HomeActivity extends AppCompatActivity {
             if (scanResult != null && scanResult.getContents() != null) {
                 String result = scanResult.getContents();
                 Log.d("扫码返回: ", result);
-                if (result != null && result.length() >= 12) {
-                    String devicename = result.substring(result.length() - 12, result.length());
+                if (result != null) {
+                    String devicename = getFieldValue(result, "BLE");
                     if (devicename.startsWith("CCP15R") || devicename.startsWith("CCP20R")) {
                         Intent qrintent = new Intent();
                         qrintent.putExtra("device", devicename);
@@ -79,5 +82,15 @@ public class HomeActivity extends AppCompatActivity {
                 // tvMsg.setText(result);
             }
         }
+    }
+
+    private String getFieldValue(String urlStr, String field) {
+        String result = "";
+        Pattern pXM = Pattern.compile(field + "=([^&]*)");
+        Matcher mXM = pXM.matcher(urlStr);
+        while (mXM.find()) {
+            result += mXM.group(1);
+        }
+        return result;
     }
 }

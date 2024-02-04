@@ -35,7 +35,7 @@
         android:layout_height="18dp"
         android:layout_marginLeft="195dp"
         android:layout_marginTop="29dp"
-        android:background="@drawable/signal" />
+        android:background="@drawable/ble" />
 
     <ImageButton
         android:id="@+id/btsetting"
@@ -198,7 +198,7 @@
         android:layout_marginLeft="62dp"
         android:layout_marginTop="248dp"
         android:text="-18°C"
-        android:textColor="@color/white"
+        android:textColor="@color/r212"
         android:textSize="36sp"
         android:lines="2"
         android:textAlignment="center" />

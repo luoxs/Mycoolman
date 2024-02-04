@@ -29,16 +29,7 @@
         android:layout_height="18dp"
         android:layout_marginLeft="195dp"
         android:layout_marginTop="29dp"
-        android:background="@drawable/signal" />
-
-    <ImageButton
-        android:id="@+id/btsetting"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="221dp"
-        android:background="@drawable/setting"
-        android:scaleType="fitXY" />
+        android:background="@drawable/ble" />
 
     <ImageView
         android:layout_width="229dp"
