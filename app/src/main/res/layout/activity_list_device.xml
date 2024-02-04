@@ -1,54 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/r142"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:background="@color/r142">
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/r105"
-        android:orientation="horizontal"
-        android:layout_weight="38">
+        android:layout_height="52dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/r105" />
 
-        <ImageButton
-            android:id="@+id/btback"
-            android:layout_width="9dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="21dp"
-            android:background="@drawable/back" />
+    <ImageView
+        android:layout_width="112dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/type"
+        android:scaleType="fitXY" />
 
-        <ImageView
-            android:id="@+id/imageTitle"
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:src="@drawable/type"
-            android:scaleType="fitEnd"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="4dp"
-            android:layout_height="match_parent"/>
+    <ImageButton
+        android:id="@+id/btback"
+        android:layout_width="9dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/back" />
 
-    </LinearLayout>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="300"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="150dp"
+        android:layout_marginTop="70dp"
+        android:layout_weight="300" />
 
     <Button
         android:id="@+id/btcancel"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="32"
-        android:textSize="12sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
-        android:textColor="@color/white"
+        android:layout_height="36dp"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/bt"
-        android:text="Cancel" />
-</LinearLayout>
+        android:text="Cancel"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+</RelativeLayout>
