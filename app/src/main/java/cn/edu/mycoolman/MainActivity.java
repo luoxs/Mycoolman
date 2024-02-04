@@ -67,7 +67,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //返回
+        ImageButton btreturn = findViewById(R.id.btback);
+        btreturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, ListDevice.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -89,16 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 handler.postDelayed(this, 1000);
             }
         };
-        //返回
-        ImageButton btreturn = findViewById(R.id.btback);
-        btreturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, ListDevice.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     //初始化蓝牙

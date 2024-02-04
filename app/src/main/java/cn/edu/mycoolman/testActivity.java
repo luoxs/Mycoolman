@@ -36,11 +36,6 @@ public class testActivity extends AppCompatActivity implements BleNotifyResponse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            MAC = intent.getStringExtra("macstr");
-//            passstr = intent.getStringExtra("password");
-//        }
         dataRead = new DataRead();
         initBluetooth();
         getPassworld();
@@ -83,6 +78,18 @@ public class testActivity extends AppCompatActivity implements BleNotifyResponse
                 });
                 Intent intent = new Intent();
                 intent.setClass(testActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //返回到首页
+        Button btreturn = findViewById(R.id.btconnect);
+        btreturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mClient.disconnect(MAC);
+                Intent intent = new Intent();
+                intent.setClass(testActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

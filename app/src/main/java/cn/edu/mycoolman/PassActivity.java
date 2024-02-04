@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,6 +56,7 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
         //    btcancel.setOnClickListener(this);
 
         mClient = MybluetoothClient.getInstance(getApplicationContext());
+        mClient.notify(MAC, service, character, this);
         dataRead = new DataRead();
         Intent intent = getIntent();
         if (intent != null) {
@@ -62,13 +64,22 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
             service = (UUID) intent.getSerializableExtra("service");
             character = (UUID) intent.getSerializableExtra("character");
         }
-        mClient.notify(MAC, service, character, this);
-        getPassWord();
-
+        //返回
+        ImageButton btback = findViewById(R.id.btback);
+        btback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(PassActivity.this, ListDevice.class);
+                startActivity(intent);
+            }
+        });
+        //显示密码
+        showPassWord();
     }
 
     //显示密钥
-    public void getPassWord() {
+    public void showPassWord() {
         if (character != null) {
             byte[] write = new byte[8];
             write[0] = (byte) 0xAA;

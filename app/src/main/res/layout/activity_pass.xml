@@ -23,7 +23,7 @@
         android:scaleType="fitXY" />
 
     <ImageButton
-        android:id="@+id/btcack"
+        android:id="@+id/btback"
         android:layout_width="9dp"
         android:layout_height="18dp"
         android:layout_marginLeft="20dp"
@@ -119,14 +119,5 @@
         android:textAlignment="center"
         android:text="Please enter the three-digit combination\nof numbers/letters displayed onth\ncooler/'s LED screen.[0~9,A~F"
         android:textSize="10sp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ok"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="100dp"
-        android:id="@+id/btok" />
-
 
 </RelativeLayout>

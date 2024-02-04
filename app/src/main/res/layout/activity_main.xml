@@ -23,7 +23,7 @@
         android:scaleType="fitXY" />
 
     <ImageButton
-        android:id="@+id/btcack"
+        android:id="@+id/btback"
         android:layout_width="9dp"
         android:layout_height="18dp"
         android:layout_marginLeft="20dp"

@@ -102,10 +102,10 @@
         android:layout_height="19dp"
         android:layout_marginLeft="167dp"
         android:layout_marginTop="84dp"
-        android:textColor="@color/white"
         android:background="@color/r142"
-        android:textSize="12sp"
-        android:text="Conneted >" />
+        android:text="Conneted >"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/btunit"

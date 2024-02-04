@@ -183,7 +183,16 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
             }
         });
 
-
+        //返回，其实和取消一样
+        ImageButton btback = findViewById(R.id.btback);
+        btback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(ListDevice.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //看连接的设备是否有保存过的密码
