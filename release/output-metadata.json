@@ -4,14 +4,14 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "cn.edu.mycoolman",
+  "applicationId": "cn.edu.mycoolman.recreational",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
+      "versionCode": 3,
       "versionName": "1.2",
       "outputFile": "app-release.apk"
     }
