@@ -86,7 +86,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
         // BluetoothClient mClient = new BluetoothClient(this);
         SearchRequest request = new SearchRequest.Builder()
                 .searchBluetoothLeDevice(3000, 3)   // 先扫BLE设备3次，每次3s
-                .searchBluetoothClassicDevice(5000) // 再扫经典蓝牙5s
+                //  .searchBluetoothClassicDevice(5000) // 再扫经典蓝牙5s
                 .searchBluetoothLeDevice(2000)      // 再扫BLE设备2s
                 .build();
 

@@ -1,6 +1,8 @@
 package cn.edu.mycoolman;
 
+import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,10 +11,13 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initPermission();
 
         btbluetooth = (ImageButton) findViewById(R.id.btBluetooth);
         btbluetooth.setOnClickListener(new View.OnClickListener() {
@@ -92,5 +98,24 @@ public class HomeActivity extends AppCompatActivity {
             result += mXM.group(1);
         }
         return result;
+    }
+
+    private final int REQUEST_PERMISSION_CODE = 1001;
+
+    private void initPermission() {
+        List<String> mPermissionList = new ArrayList<>();
+        // Android 版本大于等于 12 时，申请新的蓝牙权限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            mPermissionList.add(Manifest.permission.BLUETOOTH_SCAN);
+            mPermissionList.add(Manifest.permission.BLUETOOTH_ADVERTISE);
+            mPermissionList.add(Manifest.permission.BLUETOOTH_CONNECT);
+            //根据实际需要申请定位权限
+            //mPermissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            //mPermissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        } else {
+            mPermissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            mPermissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        ActivityCompat.requestPermissions(this, mPermissionList.toArray(new String[0]), REQUEST_PERMISSION_CODE);
     }
 }

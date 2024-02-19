@@ -9,7 +9,7 @@ android {
         applicationId "cn.edu.mycoolman.recreational"
         minSdk 25
         targetSdk 33
-        versionCode 3
+        versionCode 4
         versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
