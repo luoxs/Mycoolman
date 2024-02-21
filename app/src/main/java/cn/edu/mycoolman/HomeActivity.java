@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         // integrator.setDesiredBarcodeFormats();
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         integrator.setCaptureActivity(CaptureActivity.class); //设置打开摄像头的Activity
-        integrator.setPrompt("Please shoot sqrcode"); //底部的提示文字，设为""可以置空
+        integrator.setPrompt(""); //底部的提示文字，设为""可以置空
         integrator.setCameraId(0); //前置或者后置摄像头
         integrator.setBeepEnabled(true); //扫描成功的「哔哔」声，默认开启
         integrator.setBarcodeImageEnabled(true);

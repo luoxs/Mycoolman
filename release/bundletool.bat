@@ -1,1 +1,0 @@
-java -jar C:\Users\snc\Desktop\Mycoolman_air\release\bundletool-all-1.15.6.jar %*

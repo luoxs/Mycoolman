@@ -99,6 +99,7 @@ public class ListDevice extends AppCompatActivity implements BleWriteResponse {
             public void onDeviceFounded(SearchResult device) {
                 // Beacon beacon = new Beacon(device.scanRecord);
                 // BluetoothLog.v(String.format("----beacon for %s\n%s", device.getAddress(), beacon.toString()));
+                Log.v("-----found", device.getName());
                 if ((device.getName().startsWith("CCP15R") || device.getName().startsWith("CCP20R"))) {
                     if (!arrayList.contains(device.getName())) {
                         arrayList.add(device.getName());

@@ -64,7 +64,7 @@
         android:layout_marginLeft="54dp"
         android:layout_marginTop="353dp"
         android:lines="2"
-        android:text="Or use the phone menue\nand search for device"
+        android:text="Or use the phone menu\nand search for device"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12sp" />
