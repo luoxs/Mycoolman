@@ -1,29 +1,76 @@
 Privacy Policy
 
-Introduction: 
-This application respects and protects your privacy.In order to provide you with more accurate and personalized services, we may collect and use your information when you use our application. The Privacy Policy will explain to you how we collect, use, store, and share this information when you use our services. We will treat this information with high diligence and prudence, and use and disclose your personal information in accordance with the provisions of this privacy policy. By using or continuing to use our services, you are deemed to have agreed to all the contents of this Privacy Policy. You agree that we will collect, use, store, and share your information in accordance with this Privacy Policy. 
+#Privacy Policy
 
-Collect information. 
-When we need information that can identify you (personal information) or information that can be contacted, we will seek your consent. You understand and agree that the following information is not subject to this privacy policy: 
-(1) the keyword information you enter when using the search services provided by this application platform;
-(2) Violation of legal regulations or rules of this application, and the measures taken by this application against you. 
+Update date: * * March 15, 2024**
 
-Information Use 
-(1) We will not provide, sell, rent, share or trade your personal information to any unrelated third party, unless we have obtained your permission in advance, or unless such third party and this application (including its affiliated companies) provide services to you individually or jointly, and after the end of such service, they will be prohibited from accessing all of these materials, including those they have previously been able to access. 
-(2) We also do not allow any third party to collect, edit, sell or disseminate your personal information for free through any means. Any user of this application platform who engages in the above activities, upon discovery, has the right to immediately terminate the service agreement with that user. 
-(3) Based on the purpose of serving users, this application may provide information services to you through the use of your personal information in similar products of the company, including but not limited to sending you product and service information, or sharing information with our application partners so that they can send you information about their products and services (the latter requires your prior consent). 
+Effective Date: * * March 15, 2024**
 
-Information Disclosure: 
-In the following circumstances, this application will disclose all or part of your personal information according to your personal wishes or legal provisions:
- (1) with your prior consent, disclose to third parties;
- (2) To provide the products and services you require, it is necessary to share your personal information with third parties; 
-(3) Disclose to third parties or administrative or judicial institutions in accordance with relevant legal provisions or requirements of administrative or judicial institutions;
- (4) If you violate relevant Chinese laws, regulations, or this application service agreement or related rules, you need to disclose them to a third party;
- (5) If you are a qualified intellectual property complainant and have filed a complaint, you should disclose it to the respondent at their request in order for both parties to resolve potential rights disputes; 
-(6) In a transaction created on this application platform, if either party fulfills or partially fulfills its transaction obligations and requests information disclosure, this application has the right to decide to provide the user with necessary information such as the contact information of its counterparty to facilitate the completion of the transaction or the resolution of disputes.
- (7) Other disclosures deemed appropriate by law, regulations, or website policies for this application.
+##Introduction
 
-Information Storage and Exchange: 
-This application will not collect information and materials related to you and store them on the servers of this application and/or its affiliated companies. We provide multiple channels for information security to ensure that your personal information is accurate and timely. You can check or edit the personal information you submit to us at any time, and you can also delete the personal information you submit at any time. Strictly protect the security of your personal information. We use various security technologies and programs to protect your personal information from unauthorized access, use, or leakage. All accounts within the application have security protection functions. Please keep your username and password information safe. This application will ensure that your information is not lost, abused, or altered by encrypting user passwords and other security measures. Despite the aforementioned security measures, please also note that there are no comprehensive security measures on the information network. 
+MyCOOLMAN Recreational is a product created by
+Products provided by Leisure Tec International Limited. When you use our services, we may collect and use your relevant information. We hope to explain to you through this Privacy Policy how we collect, use, store, and share this information when using our services, as well as the ways we provide you with access, update, control, and protection of this information. This Privacy Policy is closely related to the myCOOLMAN Recreational service you are using. We hope you will read it carefully and make the appropriate choices according to the guidelines of this Privacy Policy when needed. We will try our best to express the relevant technical terms involved in this Privacy Policy in a concise and concise manner, and provide further explanatory links for your understanding.
 
- Changes to this privacy policy will be updated at any time with the further improvement of information services on online platforms. Once the updated privacy policy is published on this application, it will effectively replace the original privacy policy. We encourage you to regularly check this page to learn about our latest privacy protection measures.
+**By using or continuing to use our services, you agree to our collection, use, storage, and sharing of your relevant information in accordance with this Privacy Policy**
+
+If you have any questions about this Privacy Policy or related matters, please contact +86 17322740609 or email xsluo@126.com Contact us.
+
+##1 The information we have collected
+
+We or our third-party partners may collect, store, and use the following information related to you when providing services. If you do not provide relevant information, you may not be able to register as our user or enjoy certain services we provide, or may not be able to achieve the desired results of the relevant services.
+
+** * Location information * * refers to the information collected about your location when you enable the device positioning function and use our location-based services, including:
+*When you use our services through a mobile device with positioning capabilities, your geographic location information is collected through GPS;
+*You can stop collecting your geographical location information by turning off the positioning function.
+** * Camera information * * refers to the possibility that when you use our service, the system may capture QR codes through the camera, providing you with personalized Bluetooth connection. You can refuse or manage the use of the camera by setting it up.
+**Bluetooth information * * refers to the possibility that when you use our services, the system may provide you with personalized Bluetooth connections by connecting Bluetooth devices. You can refuse or manage the use of Bluetooth through browsing settings.
+**When we collect the above information from you, a pop-up window will prompt you whether you agree to provide the relevant information. If you refuse to provide, your relevant information will not be collected.
+
+##2 Information storage
+
+**2.1 Information storage methods and deadlines**
+
+*We will store your information in a secure manner, including local storage (such as using apps for data caching)
+*In general, we will only store your personal information for the time necessary to achieve the service objectives or under the conditions stipulated by laws and regulations.
+
+**2.2 Region of Information Storage**
+
+*We will store the collected user information in the user's phone memory in accordance with laws and regulations.
+
+**2.3 Notification when products or services cease to operate**
+
+*When our products or services cease operation, we will notify you in the form of push notifications, announcements, etc., and delete your personal information or anonymize it within a reasonable period of time, except as otherwise provided by laws and regulations.
+
+##3 \ information safety
+
+Your personal information is only used within the app and will not be transmitted over the network.
+
+##4 How we use information
+
+We may use the information collected during the process of providing services to you for the following purposes:
+
+*Providing services to you;
+*When we provide services, it is used for device connection and device model recording;
+
+##5 information sharing 
+
+At present, we will not actively share or transfer your personal information to third parties. If there is any other sharing or transfer of your personal information or if you need us to share or transfer your personal information to a third party, we will directly or confirm that the third party obtains your explicit consent to the above actions.
+
+We will not share with our partners information that can be used to identify you personally (such as your name or email address) unless you explicitly authorize it.
+
+We will not publicly disclose the personal information we collect. If disclosure is necessary, we will inform you of the purpose of this public disclosure, the type of information disclosed, and the sensitive information that may be involved, and obtain your explicit consent.
+
+With the continuous development of our business, we may engage in mergers, acquisitions, asset transfers, and other transactions. We will inform you of the relevant situation and continue to protect your personal information in accordance with laws and regulations and standards not lower than those required by this Privacy Policy, or require new controllers to continue to protect your personal information.
+
+##6 \ Your rights
+
+During your use of our services, we may provide you with corresponding operation settings based on the specific situation of the product, so that you can query, delete, correct or withdraw your relevant personal information. You can refer to the corresponding specific instructions for operation. In addition, we have set up a complaint and reporting channel, and your opinions will be promptly handled. If you are unable to exercise your personal information subject rights through the above channels and methods, you can submit your request through the contact information provided in this Privacy Policy, and we will provide feedback in accordance with laws and regulations.
+
+
+##7 \ change
+
+We may revise the terms of this Privacy Policy in a timely manner. When changes occur, we will remind you of the new Privacy Policy and explain the effective date when the version is updated. Please carefully read the revised Privacy Policy. If you continue to use our services, you agree that we will process your personal information in accordance with the updated Privacy Policy**
+
+##8 \ Protection of minors
+
+We encourage parents or guardians to guide minors under the age of eighteen to use our services. We suggest that minors encourage their parents or guardians to read this Privacy Policy and seek their consent and guidance before submitting personal information.
